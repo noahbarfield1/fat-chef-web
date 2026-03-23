@@ -45,3 +45,7 @@ next-env.d.ts
 # Large media files
 *.mp4
 *.mov
+
+# Large public binary assets
+public/menu/
+public/awards/
