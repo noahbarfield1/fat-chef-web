@@ -4,8 +4,8 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-// ── Hero video (served from Vercel CDN) ─────────
-const VIDEO_SRC = "https://fat-chef-pages.vercel.app/fat-chef-hero.mp4";
+// ── Hero video (served from GCS) ────────────────
+const VIDEO_SRC = "https://storage.googleapis.com/fat-chef-assets/videos/fat-chef-hero.mp4";
 // ────────────────────────────────────────────────
 
 const BG = "https://static.wixstatic.com/media/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg/v1/fill/w_1920,h_1043,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg";
