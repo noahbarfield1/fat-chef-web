@@ -13,8 +13,7 @@ type MenuCategory = {
   images?: string[]; 
 };
 
-// Menu CDN for legacy assets if needed
-const CDN = "https://fat-chef-pages.vercel.app";
+
 
 // ─── DINNER DATA (Rich Images) ────────────────────────────────────────────────
 const dinnerMenu: MenuCategory[] = [
@@ -176,8 +175,10 @@ function RotatingImage({ images, alt }: { images: string[]; alt: string }) {
             src={images[idx]}
             alt={alt}
             fill
+            quality={65}
+            priority={idx === 0}
             className="object-cover"
-            sizes="(max-width:768px) 100vw, 50vw"
+            sizes="(max-width:768px) 100vw, 45vw"
           />
         </motion.div>
       </AnimatePresence>
@@ -229,7 +230,7 @@ function MenuRow({ item }: { item: MenuItem }) {
         )}
       </div>
       {item.desc && (
-        <p className="font-sans text-[12.5px] text-[#8A7E6E] leading-relaxed mt-[3px]">
+          <p className="font-sans text-[12.5px] text-[#A6998A] leading-relaxed mt-[3px]">
           {item.desc}
         </p>
       )}
@@ -272,7 +273,7 @@ function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight
             className="h-px w-20 bg-gradient-to-r from-[#C5A059] to-transparent mt-3 origin-left"
           />
           {cat.note && (
-            <p className="font-sans text-[12px] text-[#6A5E4E] italic mt-4 max-w-sm leading-relaxed">{cat.note}</p>
+            <p className="font-sans text-[13px] text-[#A6998A] italic mt-4 max-w-sm leading-relaxed">{cat.note}</p>
           )}
         </div>
 
@@ -372,7 +373,7 @@ export default function MenuPage() {
                     viewport={{ once: true, margin: "-40px" }}
                     transition={{ delay: (i % 2) * 0.1, duration: 0.6 }}
                   >
-                    <div className="mb-6 pb-4 border-b border-[rgba(197,160,89,0.2)]">
+                  <div className="mb-8 pb-4 border-b border-[rgba(197,160,89,0.2)]">
                       <h3 className="font-serif text-3xl font-bold text-[#E6C875]">{cat.category}</h3>
                     </div>
                     <div className="flex flex-col">
