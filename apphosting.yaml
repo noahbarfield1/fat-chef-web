@@ -1,0 +1,27 @@
+# Firebase App Hosting configuration for The Fat Chef
+# Deploys Next.js to Cloud Run via Firebase App Hosting (GCP project: constant-cursor-455715-p1)
+# Docs: https://firebase.google.com/docs/app-hosting/configure
+
+runConfig:
+  # Restaurant website — lightweight, no heavy AI processing
+  # Scale to zero when idle (cost-efficient for a restaurant)
+  cpu: 1
+  memoryMiB: 512
+  maxInstances: 5
+  minInstances: 0
+  concurrency: 80
+
+env:
+  - variable: NODE_ENV
+    value: production
+  - variable: GOOGLE_CLOUD_PROJECT
+    value: constant-cursor-455715-p1
+  - variable: NEXT_PUBLIC_APP_URL
+    # TODO: Update this once the Fat Chef backend is created in Firebase
+    # Run: firebase apphosting:backends:create --project constant-cursor-455715-p1
+    value: https://fat-chef--constant-cursor-455715-p1.us-central1.hosted.app
+
+  # ── OpenTable (no secrets needed — widget is client-side only) ─────────────
+  # When the restaurant gets their OpenTable RID, add it here as a plain env var:
+  # - variable: NEXT_PUBLIC_OPENTABLE_RID
+  #   value: "12345678"

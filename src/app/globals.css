@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; width: 100%; }
+  body {
+    background: #070707;
+    color: #F0EBE1;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
+    text-align: left;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+::selection { background: #C5A059; color: #070707; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #070707; }
+::-webkit-scrollbar-thumb { background: rgba(197,160,89,0.35); border-radius: 2px; }
+:focus-visible { outline: 2px solid #C5A059; outline-offset: 3px; }
+
+.font-serif { font-family: var(--font-serif); }
+
+.gold-text {
+  background: linear-gradient(135deg, #C5A059 0%, #E6C875 50%, #C5A059 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
+
+.nav-glass {
+  background: rgba(7,7,7,0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.page-enter {
+  animation: pageEnter 0.7s cubic-bezier(0.16,1,0.3,1) both;
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.menu-row {
+  border-bottom: 1px solid rgba(197,160,89,0.1);
+  transition: border-color 0.3s;
+}
+.menu-row:hover { border-color: rgba(197,160,89,0.35); }
+
+.card-border {
+  border: 1px solid rgba(197,160,89,0.18);
+  transition: border-color 0.4s, box-shadow 0.4s;
+}
+.card-border:hover {
+  border-color: rgba(197,160,89,0.45);
+  box-shadow: 0 0 28px rgba(197,160,89,0.1);
+}
+
+.accolade-card {
+  border: 1px solid rgba(197,160,89,0.15);
+  background: rgba(255,255,255,0.02);
+  transition: border-color 0.4s, background 0.4s;
+}
+.accolade-card:hover {
+  border-color: rgba(197,160,89,0.35);
+  background: rgba(197,160,89,0.04);
+}
+
+/* ── Ken Burns Animations ── */
+@keyframes kenburns-a {
+  from { transform: scale(1.0) translate(0%,  0%); }
+  to   { transform: scale(1.08) translate(-2%, -1%); }
+}
+@keyframes kenburns-b {
+  from { transform: scale(1.0) translate(0%,  0%); }
+  to   { transform: scale(1.08) translate(2%,  1%); }
+}
+
+/* Pause Ken Burns on bento tile hover */
+.bento-tile:hover .bento-kb { animation-play-state: paused; }
+
+/* Bento label overlay */
+.bento-overlay { opacity: 0; transition: opacity 0.5s ease; }
+.bento-tile:hover .bento-overlay { opacity: 1; }
+
+/* Hide scrollbar on mood strip */
+.mood-strip::-webkit-scrollbar { display: none; }
+.mood-strip { -ms-overflow-style: none; scrollbar-width: none; }

@@ -1,0 +1,387 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
+import Image from "next/image";
+
+// ─── TYPES ────────────────────────────────────────────────────────────────────
+type MenuItem = { name: string; price: string; desc?: string };
+type MenuCategory = {
+  category: string;
+  note?: string;
+  items: MenuItem[];
+  images: string[]; // rotates through all images for this category
+};
+
+// ─── DINNER DATA ─────────────────────────────────────────────────────────────
+const dinnerMenu: MenuCategory[] = [
+  {
+    category: "Appetizers",
+    images: [
+      "/menu/menu_crab_dip_1773956473528.png",
+      "/menu/menu_beef_wellington_1773956498490.png",
+    ],
+    items: [
+      { name: "Crab Rangoon Dip", price: "36", desc: "Rich, creamy dip served with wonton chips" },
+      { name: "Mushrooms & Onion Ring Combination", price: "29", desc: "Hand-breaded and fried until golden" },
+      { name: "Prime Steak & Spinach Dip with Bacon", price: "34", desc: "Savory dip topped with prime steak" },
+      { name: "Beef Wellington Bites", price: "36", desc: "Tender beef wrapped in flaky puff pastry" },
+      { name: "Stuffed Mushrooms", price: "28", desc: "Classic preparation with savory filling" },
+    ],
+  },
+  {
+    category: "Salads & Soups",
+    images: ["/menu/menu_wedge_salad_1773956512189.png"],
+    items: [
+      { name: "House Salad", price: "12", desc: "Mixed greens with choice of house-made dressing" },
+      { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
+      { name: "Caesar", price: "12", desc: "Romaine with classic Caesar dressing" },
+      { name: "Caprese", price: "18", desc: "Fresh mozzarella, tomatoes, and balsamic glaze" },
+      { name: "Dinner Salad", price: "36", desc: "Romaine & spinach with salmon and shrimp, warm bacon vinaigrette" },
+      { name: "Soup Du Jour", price: "10 / 15", desc: "Cup or Bowl — ask your server" },
+    ],
+  },
+  {
+    category: "Prime Steaks",
+    note: "All entrees include starch, vegetable du jour, house salad & fresh baked bread with herbed butter",
+    images: [
+      "/menu/menu_porterhouse_1773956527249.png",
+      "/menu/menu_filet_mignon_1773956542742.png",
+    ],
+    items: [
+      { name: "Porterhouse (24–26 oz)", price: "98" },
+      { name: "T-Bone (24–26 oz)", price: "88" },
+      { name: "Filet (6 oz / 8 oz)", price: "60 / 72", desc: "Bacon wrapped, pan-seared to perfection" },
+      { name: "Ribeye (14–16 oz)", price: "74", desc: "Rich marbling with robust flavor" },
+      { name: "New York Strip (14–16 oz)", price: "70" },
+      { name: "Surf & Turf", price: "128 / 140", desc: "6 oz or 8 oz Filet with 8–10 oz Maine Lobster tail" },
+    ],
+  },
+  {
+    category: "From the Sea",
+    images: [
+      "/menu/menu_sea_scallops_1773956557333.png",
+      "/menu/menu_lobster_tail_1773956592367.png",
+      "/menu/menu_seafood_pasta_1773956576076.png",
+    ],
+    items: [
+      { name: "Sea Scallops", price: "68", desc: "Five pan-seared scallops, white wine & garlic butter" },
+      { name: "Chilean Sea Bass", price: "74", desc: "Pan-seared with fresh herbs" },
+      { name: "Crab Cakes", price: "66", desc: "Two lump crab cakes topped with quail eggs" },
+      { name: "Great Northern Walleye", price: "52", desc: "Classically seasoned or Pecan Parmesan encrusted" },
+      { name: "Atlantic Wild Salmon", price: "58", desc: "Pan-seared to medium with herb butter" },
+      { name: "Classic Shrimp Scampi", price: "58", desc: "Colossal shrimp and lump crab in scampi butter" },
+      { name: "Lobster Tail Dinner", price: "96", desc: "8–10 oz Maine Lobster with drawn butter" },
+    ],
+  },
+  {
+    category: "Perfect Pasta",
+    images: ["/menu/menu_seafood_pasta_1773956576076.png"],
+    items: [
+      { name: "Seafood Pasta", price: "78", desc: "Lobster, shrimp, scallops & clams in garlic parmesan cream" },
+      { name: "Basil Chicken Pasta", price: "64", desc: "Pan-seared chicken, artichokes, tomatoes, and basil" },
+      { name: "Lobster & Shrimp Ravioli", price: "84", desc: "House-made ravioli in white wine cream sauce" },
+    ],
+  },
+];
+
+
+// ─── BAR ─────────────────────────────────────────────────────────────────────
+const drinks = [
+  { img: "/menu/menu_alcohol_cocktail_1773956961314.png", label: "Signature Cocktails", desc: "Classic and craft cocktails, handcrafted by our bar team." },
+  { img: "/menu/menu_alcohol_wine_1773956974706.png", label: "Curated Wine List", desc: "An expertly selected cellar of Old & New World wines." },
+  { img: "/menu/menu_alcohol_martini_1773956988506.png", label: "Classic Spirits", desc: "Premium selections poured with precision." },
+];
+
+// ─── ANIMATION VARIANTS ───────────────────────────────────────────────────────
+const staggerContainer: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.055 } },
+};
+const rowIn: Variants = {
+  hidden: { opacity: 0, y: 14 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] } },
+};
+
+// ─── ROTATING IMAGE ───────────────────────────────────────────────────────────
+function RotatingImage({ images, alt }: { images: string[]; alt: string }) {
+  const [idx, setIdx] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const timer = setInterval(() => setIdx((i) => (i + 1) % images.length), 5000);
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  return (
+    <div className="relative w-full overflow-hidden" style={{ height: "480px" }}>
+      <AnimatePresence mode="sync">
+        <motion.div
+          key={images[idx]}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={images[idx]}
+            alt={alt}
+            fill
+            className="object-cover"
+            sizes="(max-width:768px) 100vw, 45vw"
+          />
+        </motion.div>
+      </AnimatePresence>
+
+      {/* Indicator dots — only show if multiple images */}
+      {images.length > 1 && (
+        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
+          {images.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIdx(i)}
+              className={`block rounded-full transition-all duration-500 ${
+                i === idx
+                  ? "w-4 h-1 bg-[#C5A059]"
+                  : "w-1 h-1 bg-[rgba(197,160,89,0.35)]"
+              }`}
+              aria-label={`View image ${i + 1}`}
+            />
+          ))}
+        </div>
+      )}
+
+      {/* Overlay gradient on bottom edge */}
+      <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[rgba(10,10,10,0.6)] to-transparent pointer-events-none" />
+    </div>
+  );
+}
+
+// ─── MENU ROW ─────────────────────────────────────────────────────────────────
+function MenuRow({ item }: { item: MenuItem }) {
+  return (
+    <motion.div
+      variants={rowIn}
+      className="group border-b border-[rgba(197,160,89,0.06)] last:border-0"
+      style={{ paddingBlock: "0.8rem" }}
+    >
+      <div className="flex items-baseline gap-2">
+        <span className="font-serif text-[15px] font-semibold text-[#F0EBE1] group-hover:text-[#E6C875] transition-colors duration-300 shrink-0">
+          {item.name}
+        </span>
+        <span className="flex-1 border-b border-dotted border-[rgba(197,160,89,0.22)] mb-[5px]" aria-hidden="true" />
+        <span className="font-serif text-[14px] font-bold text-[#C5A059] shrink-0 tabular-nums">
+          {item.price === "Market" ? "Market Price" : `$${item.price}`}
+        </span>
+      </div>
+      {item.desc && (
+        <p className="font-sans text-[12px] text-[#6A5E4E] leading-relaxed mt-[2px]">
+          {item.desc}
+        </p>
+      )}
+    </motion.div>
+  );
+}
+
+// ─── CATEGORY BLOCK (alternating image side) ──────────────────────────────────
+function CategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight: boolean }) {
+  const imageCol = (
+    <motion.div
+      initial={{ opacity: 0, x: imageRight ? 24 : -24 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+    >
+      <RotatingImage images={cat.images} alt={cat.category} />
+    </motion.div>
+  );
+
+  const textCol = (
+    <motion.div
+      initial={{ opacity: 0, x: imageRight ? -24 : 24 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="flex flex-col justify-center py-8 md:py-12"
+    >
+      {/* Category heading — big & flashy */}
+      <div style={{ marginBottom: "1.5rem" }}>
+        <motion.h3
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="font-serif font-bold leading-none"
+          style={{
+            fontSize: "clamp(32px, 4.5vw, 58px)",
+            background: "linear-gradient(135deg, #E6C875 0%, #C5A059 45%, #8A6A30 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {cat.category}
+        </motion.h3>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={{ once: true, margin: "-30px" }}
+          transition={{ duration: 0.7, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+          style={{ originX: 0, marginTop: "0.6rem" }}
+          className="h-px w-16 bg-gradient-to-r from-[#C5A059] to-transparent"
+        />
+      </div>
+
+      {cat.note && (
+        <p className="font-sans text-[11px] text-[#4A3E2E] italic mb-5 leading-relaxed">{cat.note}</p>
+      )}
+
+
+      {/* Item rows */}
+      <motion.div
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-20px" }}
+      >
+        {cat.items.map((item) => (
+          <MenuRow key={item.name} item={item} />
+        ))}
+      </motion.div>
+    </motion.div>
+  );
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
+      {/* On mobile always stack image first. On desktop, alternate */}
+      <div className={imageRight ? "md:order-2" : "md:order-1"}>
+        {imageCol}
+      </div>
+      <div
+        className={`px-8 lg:px-14 ${imageRight ? "md:order-1" : "md:order-2"}`}
+        style={{ background: "rgba(255,255,255,0.015)", borderLeft: imageRight ? "none" : "1px solid rgba(197,160,89,0.06)", borderRight: imageRight ? "1px solid rgba(197,160,89,0.06)" : "none" }}
+      >
+        {textCol}
+      </div>
+    </div>
+  );
+}
+
+export default function MenuSection() {
+  return (
+    <section id="menu" className="w-full bg-[#0a0a0a]" aria-label="Our menus">
+
+      {/* ── Section header ─────────────────────────────────────────────── */}
+      <div className="w-full flex justify-center px-6" style={{ paddingTop: "7rem", paddingBottom: "4rem" }}>
+        <div className="w-full max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8 }}
+            className="flex flex-col items-center text-center"
+            style={{ marginBottom: "3rem" }}
+          >
+            <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-[#C5A059]" style={{ marginBottom: "0.75rem" }}>
+              Crafted Daily
+            </p>
+            <h2 className="font-serif text-4xl md:text-5xl font-bold text-[#F0EBE1]" style={{ marginBottom: "1.25rem" }}>
+              Our Menus
+            </h2>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-[rgba(197,160,89,0.5)] to-transparent mb-6" />
+            <p className="font-sans text-sm text-[#6A5E4E] max-w-md leading-relaxed">
+              All dinner entrees include choice of starch, vegetable du jour, house salad &amp; fresh baked bread with herbed butter.
+            </p>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* ── Category blocks — full viewport width ────────────────────────── */}
+      <div>
+          {dinnerMenu.map((cat, i) => (
+            <div key={cat.category} className="border-t border-[rgba(197,160,89,0.07)]">
+              <div className="max-w-7xl mx-auto">
+                <CategoryBlock cat={cat} imageRight={i % 2 === 0} />
+              </div>
+            </div>
+          ))}
+
+          {/* Steak enhancements */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.8 }}
+            className="text-center font-sans text-[11px] text-[#4A3E2E] italic border-t border-[rgba(197,160,89,0.07)]"
+            style={{ paddingBlock: "2rem" }}
+          >
+            Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)
+          </motion.p>
+        </div>
+
+      {/* ── Cocktails & Wine ───────────────────────────────────────────── */}
+      <div className="w-full border-t border-[rgba(197,160,89,0.07)]" style={{ paddingTop: "5rem", paddingBottom: "6rem" }}>
+        <div className="w-full flex justify-center px-6">
+        <div className="w-full max-w-5xl">
+          {/* Divider + heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center"
+            style={{ marginBottom: "3rem" }}
+          >
+            <div className="flex items-center gap-5 justify-center mb-5">
+              <span className="flex-1 max-w-[120px] h-px bg-gradient-to-r from-transparent to-[rgba(197,160,89,0.3)]" />
+              <p className="font-sans text-[9px] tracking-[0.35em] uppercase text-[#4A3E2E]">The Bar</p>
+              <span className="flex-1 max-w-[120px] h-px bg-gradient-to-l from-transparent to-[rgba(197,160,89,0.3)]" />
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#F0EBE1]" style={{ marginBottom: "0.75rem" }}>
+              Cocktails &amp; Wine
+            </h2>
+            <p className="font-sans text-sm text-[#6A5E4E]">
+              Ask your server about our full cocktail list, local draft selections, and nightly wine specials.
+            </p>
+          </motion.div>
+
+          {/* 3-up portrait cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {drinks.map((d, i) => (
+              <motion.div
+                key={d.label}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ delay: i * 0.12, duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                className="group relative overflow-hidden"
+                style={{ aspectRatio: "3/4" }}
+              >
+                <Image
+                  src={d.img}
+                  alt={d.label}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width:768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,10,10,0.95)] via-[rgba(10,10,10,0.35)] to-[rgba(10,10,10,0.1)]" />
+                <div
+                  className="absolute top-0 inset-x-0 h-px"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.5), transparent)" }}
+                />
+                <div className="absolute bottom-0 left-0 p-6">
+                  <h4 className="font-serif text-xl font-semibold text-[#E6C875] mb-1">{d.label}</h4>
+                  <p className="font-sans text-[12px] text-[#8A7E6E] leading-relaxed">{d.desc}</p>
+                </div>
+                <div className="absolute inset-x-0 bottom-0 h-[2px] bg-gradient-to-r from-transparent via-[#C5A059] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </motion.div>
+            ))}
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+  );
+}
