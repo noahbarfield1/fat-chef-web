@@ -3,6 +3,9 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 
+// Menu image CDN base (served from fat-chef-pages on Vercel)
+const CDN = "https://fat-chef-pages.vercel.app";
+
 type Item = { name: string; price: string; desc: string };
 type Cat  = { category: string; note?: string; items: Item[] };
 
@@ -166,7 +169,7 @@ function FeatureSpotlight() {
     <div className="grid grid-cols-1 sm:grid-cols-[55%_45%] my-12 overflow-hidden" style={{ border: "1px solid rgba(197,160,89,0.22)" }}>
       <div className="relative h-64 sm:h-auto overflow-hidden bento-tile">
         <div className="bento-kb absolute inset-0" style={{ animation: "kenburns-a 10s ease-in-out infinite alternate" }}>
-          <Image src="/menu/fat_chef_steak.png" alt="USDA Prime Ribeye" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
+          <Image src={`${CDN}/menu/fat_chef_steak.png`} alt="USDA Prime Ribeye" fill className="object-cover" sizes="(max-width: 640px) 100vw, 33vw" />
         </div>
       </div>
       <div className="flex flex-col justify-between p-6" style={{ background: "#0D0B08", borderLeft: "1px solid rgba(197,160,89,0.15)" }}>
@@ -189,9 +192,9 @@ function FeatureSpotlight() {
 
 function FeatureRow() {
   const tiles = [
-    { src: "/menu/fat_chef_surf_turf.png", label: "Surf & Turf",   price: "$128", dir: "a", delay: "0s",   category: "Chef's Selection" },
-    { src: "/menu/fat_chef_lobster.png",   label: "Lobster Tail",  price: "$96",  dir: "b", delay: "1.5s", category: "From the Sea" },
-    { src: "/menu/fat_chef_seafood.png",   label: "Sea Scallops",  price: "$68",  dir: "a", delay: "3s",   category: "From the Sea" },
+    { src: `${CDN}/menu/fat_chef_surf_turf.png`, label: "Surf & Turf",   price: "$128", dir: "a", delay: "0s",   category: "Chef's Selection" },
+    { src: `${CDN}/menu/fat_chef_lobster.png`,   label: "Lobster Tail",  price: "$96",  dir: "b", delay: "1.5s", category: "From the Sea" },
+    { src: `${CDN}/menu/fat_chef_seafood.png`,   label: "Sea Scallops",  price: "$68",  dir: "a", delay: "3s",   category: "From the Sea" },
   ] as const;
   return (
     <div className="grid grid-cols-3 gap-1.5 mb-12">
@@ -217,7 +220,7 @@ function FeatureAmbiance() {
   return (
     <div className="relative overflow-hidden my-12" style={{ height: "160px", border: "1px solid rgba(197,160,89,0.15)" }}>
       <div className="absolute inset-0" style={{ animation: "kenburns-b 12s ease-in-out infinite alternate" }}>
-        <Image src="/menu/fat_chef_ambiance.png" alt="The Fat Chef dining room" fill className="object-cover" sizes="(max-width: 768px) 100vw, 56vw" />
+        <Image src={`${CDN}/menu/fat_chef_ambiance.png`} alt="The Fat Chef dining room" fill className="object-cover" sizes="(max-width: 768px) 100vw, 56vw" />
       </div>
       <div className="absolute inset-0 bg-black/55 flex flex-col items-center justify-center gap-2">
         <p className="font-sans text-[9px] tracking-[0.32em] uppercase text-[rgba(197,160,89,0.6)]">Rogers, Arkansas</p>
@@ -232,7 +235,7 @@ function SectionBreaker({ src, label, kbDir }: { src: string; label: string; kbD
   return (
     <div className="relative h-48 md:h-72 overflow-hidden my-10" style={{ border: "1px solid rgba(197,160,89,0.12)" }}>
       <div className="absolute inset-0" style={{ animation: `kenburns-${kbDir} 12s ease-in-out infinite alternate` }}>
-        <Image src={src} alt={label} fill className="object-cover" sizes="(max-width: 768px) 100vw, 60vw" />
+        <Image src={src} alt={label} fill className="object-cover" sizes="(max-width: 768px) 100vw, 60vw" unoptimized />
       </div>
       <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
         <p className="font-serif text-[13px] md:text-[15px] text-[#C5A059] tracking-[0.4em] uppercase" style={{ fontVariant: "small-caps" }}>{label}</p>

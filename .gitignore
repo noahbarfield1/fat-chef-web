@@ -41,11 +41,3 @@ yarn-error.log*
 next-env.d.ts
 
 .vercel
-
-# Large media files
-*.mp4
-*.mov
-
-# Large public binary assets
-public/menu/
-public/awards/
