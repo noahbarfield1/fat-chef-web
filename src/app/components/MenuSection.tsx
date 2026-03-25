@@ -87,11 +87,13 @@ const dinnerMenu: MenuCategory[] = [
     category: "Desserts",
     images: ["/menu/fat_chef_dessert.png"],
     items: [
-      { name: "New York Style Cheesecake", price: "12", desc: "Rich and creamy, topped with fresh berry compote" },
-      { name: "Warm Chocolate Lava Cake", price: "13", desc: "Served with vanilla bean ice cream and raspberry coulis" },
-      { name: "Crème Brûlée", price: "11", desc: "Classic vanilla custard with a caramelized sugar crust" },
-      { name: "Tiramisu", price: "12", desc: "Espresso-soaked ladyfingers with mascarpone cream" },
-      { name: "Seasonal Sorbet", price: "9", desc: "Ask your server for today's selection" },
+      { name: "Vanilla Bean Crème Brûlée", price: "16" },
+      { name: "Spiced Carrot Cake with Cream Cheese Frosting", price: "16" },
+      { name: "Pecan Cobbler with Vanilla Bean Ice Cream and Caramel Drizzle", price: "16" },
+      { name: "Death by Chocolate Molten Cake", price: "16", desc: "Served warm with Vanilla Bean Ice Cream, Caramel and Chocolate Swirl" },
+      { name: "Toffee and Caramel with Sea Salt Crêpe Cake", price: "16" },
+      { name: "Ooey Gooey Brown Butter Cake with Vanilla Bean Ice Cream and Berries", price: "16" },
+      { name: "Vanilla Bean Ice Cream", price: "8" },
     ],
   },
 ];
