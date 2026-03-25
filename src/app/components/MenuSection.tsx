@@ -83,6 +83,17 @@ const dinnerMenu: MenuCategory[] = [
       { name: "Lobster & Shrimp Ravioli", price: "84", desc: "House-made ravioli in white wine cream sauce" },
     ],
   },
+  {
+    category: "Desserts",
+    images: ["/menu/fat_chef_dessert.png"],
+    items: [
+      { name: "New York Style Cheesecake", price: "12", desc: "Rich and creamy, topped with fresh berry compote" },
+      { name: "Warm Chocolate Lava Cake", price: "13", desc: "Served with vanilla bean ice cream and raspberry coulis" },
+      { name: "Crème Brûlée", price: "11", desc: "Classic vanilla custard with a caramelized sugar crust" },
+      { name: "Tiramisu", price: "12", desc: "Espresso-soaked ladyfingers with mascarpone cream" },
+      { name: "Seasonal Sorbet", price: "9", desc: "Ask your server for today's selection" },
+    ],
+  },
 ];
 
 
