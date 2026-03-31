@@ -1,14 +1,17 @@
 "use client";
-import { motion, useScroll, useTransform } from "framer-motion";
+import LuxImage from "./primitives/LuxImage";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useRef } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import { Great_Vibes } from "next/font/google";
+
+const greatVibes = Great_Vibes({ weight: "400", subsets: ["latin"], display: "swap" });
 
 // ── Hero video (served from GCS) ────────────────
 const VIDEO_SRC = "https://storage.googleapis.com/fat-chef-assets/videos/fat-chef-hero.mp4";
 // ────────────────────────────────────────────────
 
-const BG = "https://static.wixstatic.com/media/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg/v1/fill/w_1920,h_1043,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg";
+const BG = "/post-pics/candle-red-ambiance-muted.jpg";
 
 function Char({ char, delay }: { char: string; delay: number }) {
   return (
@@ -41,7 +44,7 @@ export default function HomeHero() {
       <motion.div style={{ y: bgY }} className="absolute inset-0 scale-[1.08]">
         {VIDEO_SRC
           ? <video src={VIDEO_SRC} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
-          : <Image src={BG} alt="The Fat Chef restaurant interior" fill priority className="object-cover" sizes="100vw" />
+          : <LuxImage src={BG} alt="The Fat Chef restaurant interior" fill priority className="object-cover" sizes="100vw" />
         }
         <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[rgba(3,3,3,0.5)] to-[rgba(3,3,3,0.2)]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[rgba(3,3,3,0.4)] via-transparent to-[rgba(3,3,3,0.4)]" />
@@ -71,6 +74,21 @@ export default function HomeHero() {
             {"Chef".split("").map((c, i) => <span key={i} className="inline-flex overflow-hidden"><Char char={c} delay={1.48 + i * 0.05} /></span>)}
           </span>
         </h1>
+
+        {/* Animated Cursive Quote with Neon Glow */}
+        <motion.div 
+          initial={{ clipPath: "inset(-20% 100% -20% -20%)", opacity: 0 }} 
+          animate={{ clipPath: "inset(-20% -20% -20% -20%)", opacity: 1 }} 
+          transition={{ duration: 2.4, delay: 1.8, ease: "easeInOut" }} 
+          className={`text-4xl md:text-5xl lg:text-[64px] text-[#FFEDBA] -mt-2 mb-4 flex justify-center text-center w-full relative z-20 ${greatVibes.className}`}
+          style={{ 
+            lineHeight: "1.3",
+            paddingRight: "10px", 
+            textShadow: "0 0 12px rgba(255,237,186,0.7), 0 0 24px rgba(197,160,89,0.5), 2px 4px 10px rgba(0,0,0,0.9)"
+          }}
+        >
+          Never trust a skinny chef&nbsp;
+        </motion.div>
 
         {/* Divider */}
         <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.9, delay: 1.9 }} className="w-20 h-px bg-gradient-to-r from-transparent via-[#C5A059] to-transparent mx-auto my-7" aria-hidden="true" />

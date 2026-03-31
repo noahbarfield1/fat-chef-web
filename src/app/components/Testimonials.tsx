@@ -2,44 +2,15 @@
 
 import { motion, Variants } from "framer-motion";
 
-const reviews = [
-  {
-    name: "Sarah M.",
-    rating: 5,
-    date: "December 2024",
-    text: "Absolutely the best dining experience in all of Northwest Arkansas. The filet mignon was cooked to perfection — melt-in-your-mouth tender. The lobster bisque should be illegal it's so good. Our server made the entire evening feel like a celebration. We will be back for every anniversary from now on.",
-  },
-  {
-    name: "James T.",
-    rating: 5,
-    date: "October 2024",
-    text: "The Fat Chef is in a league of its own. Fresh fish flown in daily, homemade bread that you can't stop eating, and desserts that warrant a separate visit. The husband-and-wife team run this place with genuine passion and it shows in every single dish. Best steakhouse in the state — period.",
-  },
-  {
-    name: "Linda K.",
-    rating: 5,
-    date: "September 2024",
-    text: "We drove two hours just to eat here and it was completely worth it. The surf and turf was unreal — perfectly seared ribeye paired with the most tender sea scallops I've ever had. The atmosphere is romantic and intimate without being stuffy. This is what fine dining is supposed to feel like.",
-  },
-  {
-    name: "Robert & Carol D.",
-    rating: 5,
-    date: "August 2024",
-    text: "Celebrated our 30th anniversary here on a recommendation and cannot thank whoever told us about this place enough. From the amuse-bouche to the crème brûlée, every course was flawless. The wine selection is curated thoughtfully and the staff are some of the most attentive we've ever encountered.",
-  },
-  {
-    name: "Brandon H.",
-    rating: 5,
-    date: "July 2024",
-    text: "As someone who has eaten at Michelin-starred restaurants in New York and Chicago, The Fat Chef competes at that level — in Rogers, Arkansas. The dry-aged steak is exceptional. The sides aren't afterthoughts; the truffle mac was one of the best things I've eaten this year. Reservations are a must.",
-  },
-  {
-    name: "Michelle P.",
-    rating: 5,
-    date: "June 2024",
-    text: "The best seafood in Arkansas is not just marketing — it's the truth. The Chilean sea bass was flawless. I also love that this is a locally-owned restaurant where the owners are present and care deeply about every guest's experience. Rare to find this level of quality and hospitality in the same place.",
-  },
-];
+import { useEffect, useState } from "react";
+
+export type Review = {
+  id: string;
+  authorName: string;
+  rating: number;
+  text: string;
+  time: string;
+};
 
 const StarIcon = ({ filled }: { filled: boolean }) => (
   <svg
@@ -86,6 +57,19 @@ const cardVariant: Variants = {
 };
 
 export default function Testimonials() {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch('/api/reviews')
+      .then(res => res.json())
+      .then(data => {
+        setReviews(data.reviews || []);
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
   return (
     <section
       className="w-full flex justify-center px-6 bg-[#080808]"
@@ -119,51 +103,57 @@ export default function Testimonials() {
           </div>
         </motion.div>
 
-        <motion.div
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
-        >
-          {reviews.map((review) => (
-            <motion.article
-              key={review.name}
-              variants={cardVariant}
-              className="relative p-7 flex flex-col gap-4"
-              style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(197,160,89,0.10)",
-                borderRadius: "2px",
-              }}
-            >
-              <div
-                className="absolute top-0 left-0 right-0 h-px"
-                style={{ background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.5), transparent)" }}
-              />
+        {loading ? (
+          <div className="flex justify-center py-20">
+            <div className="w-8 h-8 rounded-full border-2 border-[rgba(197,160,89,0.2)] border-t-[#C5A059] animate-spin" />
+          </div>
+        ) : (
+          <motion.div
+            variants={container}
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-60px" }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+          >
+            {reviews.map((review: Review) => (
+              <motion.article
+                key={review.id}
+                variants={cardVariant}
+                className="relative p-7 flex flex-col gap-4"
+                style={{
+                  background: "rgba(255,255,255,0.025)",
+                  border: "1px solid rgba(197,160,89,0.10)",
+                  borderRadius: "2px",
+                }}
+              >
+                <div
+                  className="absolute top-0 left-0 right-0 h-px"
+                  style={{ background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.5), transparent)" }}
+                />
 
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-0.5">
-                  {[1, 2, 3, 4, 5].map((i) => (
-                    <StarIcon key={i} filled={i <= review.rating} />
-                  ))}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-0.5">
+                    {[1, 2, 3, 4, 5].map((i) => (
+                      <StarIcon key={i} filled={i <= review.rating} />
+                    ))}
+                  </div>
+                  <GoogleIcon />
                 </div>
-                <GoogleIcon />
-              </div>
 
-              <p className="font-sans text-[13px] leading-relaxed text-[#B8A99A] flex-1">
-                &ldquo;{review.text}&rdquo;
-              </p>
-
-              <div className="pt-3 border-t border-[rgba(197,160,89,0.08)] flex items-center justify-between">
-                <p className="font-serif text-sm text-[#E6C875]">{review.name}</p>
-                <p className="font-sans text-[10px] tracking-widest uppercase text-[#5A4E3E]">
-                  {review.date}
+                <p className="font-sans text-[13px] leading-relaxed text-[#B8A99A] flex-1">
+                  &ldquo;{review.text}&rdquo;
                 </p>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+
+                <div className="pt-3 border-t border-[rgba(197,160,89,0.08)] flex items-center justify-between">
+                  <p className="font-serif text-sm text-[#E6C875]">{review.authorName}</p>
+                  <p className="font-sans text-[10px] tracking-widest uppercase text-[#5A4E3E]">
+                    {review.time}
+                  </p>
+                </div>
+              </motion.article>
+            ))}
+          </motion.div>
+        )}
 
         <motion.div
           initial={{ opacity: 0 }}

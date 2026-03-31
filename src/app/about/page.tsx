@@ -15,7 +15,7 @@ export default function AboutPage() {
       {/* Page hero */}
       <div className="relative h-72 md:h-96 flex items-end pb-14 px-6 overflow-hidden">
         <Image
-          src="https://static.wixstatic.com/media/019c1a_754d9b825c2f4dbd9fa38b3b3100f3ba~mv2.jpg/v1/fill/w_1220,h_681,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_754d9b825c2f4dbd9fa38b3b3100f3ba~mv2.jpg"
+          src="/post-pics/outdoor-owners-2.jpg"
           alt="The Fat Chef patio dining" fill className="object-cover" priority sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#070707] via-[rgba(7,7,7,0.55)] to-[rgba(7,7,7,0.1)]" />
@@ -64,7 +64,7 @@ export default function AboutPage() {
           <div className="flex flex-col gap-4">
             <div className="relative aspect-[4/3] overflow-hidden">
               <Image
-                src="https://static.wixstatic.com/media/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg/v1/fill/w_1220,h_681,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg"
+                src="/post-pics/the-fat-chef-owners.jpg"
                 alt="The Fat Chef bar ambiance" fill className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
@@ -72,7 +72,7 @@ export default function AboutPage() {
             </div>
             <div className="relative aspect-[16/7] overflow-hidden">
               <Image
-                src="https://static.wixstatic.com/media/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg/v1/fill/w_1920,h_1043,al_c,q_90,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg"
+                src="/post-pics/candle-red-ambiance-muted.jpg"
                 alt="The Fat Chef dining room interior" fill className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import Image from "next/image";
+import LuxImage from "./primitives/LuxImage";
 
 export default function About() {
   return (
@@ -22,20 +22,20 @@ export default function About() {
           className="relative pb-14 md:pb-20"
         >
           {/* Main image */}
-          <div className="relative aspect-[4/3] overflow-hidden">
-            <Image
-              src="https://static.wixstatic.com/media/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg/v1/fill/w_1220,h_681,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg"
-              alt="The Fat Chef bar and interior ambiance"
+          <div className="relative md:aspect-[4/3] aspect-[4/5] overflow-hidden">
+            <LuxImage
+              src="/post-pics/outdoor-owners-1.jpg"
+              alt="The owners of The Fat Chef standing outdoors next to the chef statue"
               fill
-              className="object-cover"
+              className="object-cover md:object-center object-[60%_20%]"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(7,7,7,0.6)] to-transparent" />
           </div>
           {/* Inset second image */}
           <div className="absolute bottom-0 -right-6 w-1/2 aspect-[3/4] border-4 border-[#070707] overflow-hidden hidden md:block">
-            <Image
-              src="https://static.wixstatic.com/media/019c1a_754d9b825c2f4dbd9fa38b3b3100f3ba~mv2.jpg/v1/fill/w_1220,h_681,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_754d9b825c2f4dbd9fa38b3b3100f3ba~mv2.jpg"
+            <LuxImage
+              src="/post-pics/outdoor-owners-2.jpg"
               alt="The Fat Chef patio dining area"
               fill
               className="object-cover"

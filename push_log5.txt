@@ -1,0 +1,24 @@
+﻿git : To https://github
+.com/noahbarfield1/fat-
+chef-web.git
+At line:1 char:108
++ ... ove all 
+alcohol/wine pricing"; 
+git push origin 
+HEAD:main 2>&1 | Out-F 
+...
++                      
+              ~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (To https://gi   
+ th...at-chef-web.g    
+it:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+   4ffe768..ee47b60  
+HEAD -> main

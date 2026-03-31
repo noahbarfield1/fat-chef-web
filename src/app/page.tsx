@@ -1,8 +1,10 @@
 "use client";
 
-import Image from "next/image";
+
+import LuxImage from "./components/primitives/LuxImage";
 import Link from "next/link";
 import HomeHero from "./components/HomeHero";
+import LocationSection from "./components/LocationSection";
 import Accolades from "./components/Accolades";
 import Testimonials from "./components/Testimonials";
 import { motion, Variants } from "framer-motion";
@@ -36,9 +38,9 @@ export default function HomePage() {
             transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="relative aspect-[4/3] overflow-hidden"
           >
-            <Image
-              src="https://static.wixstatic.com/media/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg/v1/fill/w_1220,h_681,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_6a3e4beb359e44fb8c6983f9d8f4cc0c~mv2.jpg"
-              alt="The Fat Chef bar and interior" fill className="object-cover"
+            <LuxImage
+              src="/post-pics/outdoor-owners-1.jpg"
+              alt="The owners of The Fat Chef standing outdoors next to the chef statue" fill className="object-cover"
               sizes="(max-width: 768px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(7,7,7,0.55)] to-transparent" />
@@ -55,10 +57,12 @@ export default function HomePage() {
             </h2>
             <div className="w-10 h-px mb-6" style={{ background: "rgba(197,160,89,0.5)" }} />
             <blockquote className="font-serif italic text-lg leading-relaxed mb-6 pl-5" style={{ color: "#C5A059", borderLeft: "2px solid rgba(197,160,89,0.35)" }}>
-              &ldquo;We had struggled to find the kind of restaurant that offered quality sit-down dining without having to go all the way into Bentonville.&rdquo;
+              &ldquo;Looking for the perfect night out? Come to one of Northwest Arkansas’ most highly recommended hidden gems, The Fat Chef!&rdquo;
             </blockquote>
             <p className="font-sans text-[14px] leading-relaxed mb-8" style={{ color: "#6A5E4E" }}>
-              Family-run by Richard, Christine &amp; Joan — The Fat Chef is a labour of love, bringing honest fine dining to the heart of Rogers, Arkansas.
+              Our five-star dining menu features All Prime Grade, hand cut steaks, flown-in-fresh Chilean Sea Bass, Scottish Salmon, real Scallops, and huge Maine lobster tails. Everything is made from scratch including sides, dressings, and our fresh bread with herbed butter.
+              <br/><br/>
+              Treat yourself with a homemade dessert and one of our signature cocktails. The Fat Chef. Where exceptional food is served in an intimate relaxed atmosphere. Make your reservation now.
             </p>
             <Link href="/about" className="inline-block font-sans text-[11px] font-semibold tracking-[0.18em] uppercase px-8 py-3 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[rgba(197,160,89,0.08)] transition-all duration-300">
               Read Our Full Story
@@ -88,11 +92,11 @@ export default function HomePage() {
             className="grid md:grid-cols-2 gap-4 mb-10"
           >
             {[
-              { src: "https://static.wixstatic.com/media/11062b_a1ea136152184e7b89aa72d3a910d0fb~mv2.jpg/v1/fill/w_1225,h_444,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_a1ea136152184e7b89aa72d3a910d0fb~mv2.jpg", alt: "USDA Prime steak", label: "Prime Steaks", sub: "USDA Prime · Hand Cut Daily" },
-              { src: "https://static.wixstatic.com/media/019c1a_a717f53bbcf346268137c9f90b1b610c~mv2.jpg/v1/fill/w_1225,h_444,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/019c1a_a717f53bbcf346268137c9f90b1b610c~mv2.jpg", alt: "Seared tuna", label: "Fresh Seafood", sub: "From the Sea · Market Fresh" },
+              { src: "/post-pics/big-steak-and-shrimp.jpg", alt: "USDA Prime steak", label: "Prime Steaks", sub: "USDA Prime · Hand Cut Daily" },
+              { src: "/post-pics/fish-sweet-potato-1.jpg", alt: "Seared tuna", label: "Fresh Seafood", sub: "From the Sea · Market Fresh" },
             ].map((img) => (
               <motion.div key={img.label} variants={fadeUp} className="relative overflow-hidden group" style={{ aspectRatio: "16/8" }}>
-                <Image src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
+                <LuxImage src={img.src} alt={img.alt} fill className="object-cover transition-transform duration-700 group-hover:scale-105" sizes="50vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,7,7,0.85)] to-transparent" />
                 <div className="absolute bottom-5 left-5">
                   <p className="font-serif text-xl font-bold text-[#F0EBE1]">{img.label}</p>
@@ -138,6 +142,9 @@ export default function HomePage() {
           </div>
         </motion.div>
       </section>
+
+      {/* EPIC LOCATION SECTION */}
+      <LocationSection />
     </main>
   );
 }

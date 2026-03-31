@@ -9,6 +9,7 @@ type MenuItem = { name: string; price: string; desc?: string };
 type MenuCategory = {
   category: string;
   note?: string;
+  footer?: string;
   items: MenuItem[];
   images: string[]; // rotates through all images for this category
 };
@@ -18,8 +19,8 @@ const dinnerMenu: MenuCategory[] = [
   {
     category: "Appetizers",
     images: [
-      "/menu/menu_crab_dip_1773956473528.png",
-      "/menu/menu_beef_wellington_1773956498490.png",
+      "/post-pics/crab-rangoon-dip-1.jpg",
+      "/post-pics/beef-wellington.jpg",
     ],
     items: [
       { name: "Crab Rangoon Dip", price: "36", desc: "Rich, creamy dip served with wonton chips" },
@@ -31,7 +32,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Salads & Soups",
-    images: ["/menu/menu_wedge_salad_1773956512189.png"],
+    images: ["/post-pics/salads-1.jpg"],
     items: [
       { name: "House Salad", price: "12", desc: "Mixed greens with choice of house-made dressing" },
       { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
@@ -44,9 +45,10 @@ const dinnerMenu: MenuCategory[] = [
   {
     category: "Prime Steaks",
     note: "All entrees include starch, vegetable du jour, house salad & fresh baked bread with herbed butter",
+    footer: "* Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)",
     images: [
-      "/menu/menu_porterhouse_1773956527249.png",
-      "/menu/menu_filet_mignon_1773956542742.png",
+      "/post-pics/steak-with-potato-and-green-beans.jpg",
+      "/post-pics/big-steak-and-shrimp.jpg",
     ],
     items: [
       { name: "Porterhouse (24–26 oz)", price: "98" },
@@ -60,9 +62,9 @@ const dinnerMenu: MenuCategory[] = [
   {
     category: "From the Sea",
     images: [
-      "/menu/menu_sea_scallops_1773956557333.png",
-      "/menu/menu_lobster_tail_1773956592367.png",
-      "/menu/menu_seafood_pasta_1773956576076.png",
+      "/post-pics/shrimp-entree.jpg",
+      "/post-pics/surf-and-turf.jpg",
+      "/post-pics/seafood-pasta-1.jpg",
     ],
     items: [
       { name: "Sea Scallops", price: "68", desc: "Five pan-seared scallops, white wine & garlic butter" },
@@ -76,7 +78,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Perfect Pasta",
-    images: ["/menu/menu_seafood_pasta_1773956576076.png"],
+    images: ["/post-pics/seafood-pasta-1.jpg"],
     items: [
       { name: "Seafood Pasta", price: "78", desc: "Lobster, shrimp, scallops & clams in garlic parmesan cream" },
       { name: "Basil Chicken Pasta", price: "64", desc: "Pan-seared chicken, artichokes, tomatoes, and basil" },
@@ -85,7 +87,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Desserts",
-    images: ["/menu/fat_chef_dessert.png"],
+    images: ["/post-pics/creme-brulee.jpg"],
     items: [
       { name: "Vanilla Bean Crème Brûlée", price: "16" },
       { name: "Spiced Carrot Cake with Cream Cheese Frosting", price: "16" },
@@ -101,9 +103,9 @@ const dinnerMenu: MenuCategory[] = [
 
 // ─── BAR ─────────────────────────────────────────────────────────────────────
 const drinks = [
-  { img: "/menu/menu_alcohol_cocktail_1773956961314.png", label: "Signature Cocktails", desc: "Classic and craft cocktails, handcrafted by our bar team." },
-  { img: "/menu/menu_alcohol_wine_1773956974706.png", label: "Curated Wine List", desc: "An expertly selected cellar of Old & New World wines." },
-  { img: "/menu/menu_alcohol_martini_1773956988506.png", label: "Classic Spirits", desc: "Premium selections poured with precision." },
+  { img: "/post-pics/bar-drinks-1.jpg", label: "Signature Cocktails", desc: "Classic and craft cocktails, handcrafted by our bar team." },
+  { img: "/post-pics/bar-drinks-arty.png", label: "Curated Wine List", desc: "An expertly selected cellar of Old & New World wines." },
+  { img: "/post-pics/bar-drinks-1.jpg", label: "Classic Spirits", desc: "Premium selections poured with precision." },
 ];
 
 // ─── ANIMATION VARIANTS ───────────────────────────────────────────────────────
@@ -262,6 +264,14 @@ function CategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight: boo
         {cat.items.map((item) => (
           <MenuRow key={item.name} item={item} />
         ))}
+        {cat.footer && (
+          <motion.p
+            variants={rowIn}
+            className="font-sans text-[11px] text-[#A6998A] italic mt-4 leading-relaxed"
+          >
+            {cat.footer}
+          </motion.p>
+        )}
       </motion.div>
     </motion.div>
   );
@@ -321,17 +331,6 @@ export default function MenuSection() {
             </div>
           ))}
 
-          {/* Steak enhancements */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-center font-sans text-[11px] text-[#4A3E2E] italic border-t border-[rgba(197,160,89,0.07)]"
-            style={{ paddingBlock: "2rem" }}
-          >
-            Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)
-          </motion.p>
         </div>
 
       {/* ── Cocktails & Wine ───────────────────────────────────────────── */}

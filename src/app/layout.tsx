@@ -3,7 +3,7 @@ import { Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
-import PageTransition from "./components/PageTransition";
+import SmoothScroller from "./components/primitives/SmoothScroller";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -39,12 +39,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
-      <body className="antialiased bg-[#070707] text-[#F0EBE1]">
-        <Nav />
-        <PageTransition>
+      <body className="antialiased bg-[#070707] text-[#F0EBE1]" suppressHydrationWarning>
+        <SmoothScroller>
+          <Nav />
           {children}
-        </PageTransition>
-        <Footer />
+          <Footer />
+        </SmoothScroller>
       </body>
     </html>
   );

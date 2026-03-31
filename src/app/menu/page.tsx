@@ -9,6 +9,7 @@ type MenuItem = { name: string; price: string; desc?: string };
 type MenuCategory = {
   category: string;
   note?: string;
+  footer?: string;
   items: MenuItem[];
   images?: string[]; 
 };
@@ -20,8 +21,8 @@ const dinnerMenu: MenuCategory[] = [
   {
     category: "Appetizers",
     images: [
-      "/menu/menu_crab_dip_1773956473528.png",
-      "/menu/menu_beef_wellington_1773956498490.png",
+      "/post-pics/crab-rangoon-dip-1.jpg",
+      "/post-pics/beef-wellington.jpg",
     ],
     items: [
       { name: "Crab Rangoon Dip", price: "36", desc: "Rich, creamy dip served with wonton chips" },
@@ -33,23 +34,22 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Salads & Soups",
-    images: ["/menu/menu_wedge_salad_1773956512189.png"],
+    images: ["/post-pics/salads-1.jpg"],
     items: [
       { name: "House Salad", price: "12", desc: "Mixed greens with choice of house-made dressing" },
       { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
       { name: "Caesar", price: "12", desc: "Romaine with classic Caesar dressing" },
       { name: "Caprese", price: "18", desc: "Fresh mozzarella, tomatoes, and balsamic glaze" },
-      { name: "Dinner Salad", price: "36", desc: "Romaine & spinach with salmon and shrimp, warm bacon vinaigrette" },
-      { name: "Soup Du Jour", price: "10 / 15", desc: "Cup or Bowl — ask your server" },
     ],
   },
   {
     category: "Prime Steaks",
     note: "All entrees include starch, vegetable du jour, house salad & fresh baked bread with herbed butter",
+    footer: "* Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)",
     images: [
-      "/menu/menu_porterhouse_1773956527249.png",
-      "/menu/menu_filet_mignon_1773956542742.png",
-      "/menu/fat_chef_steak.png", // from old menu
+      "/post-pics/steak-with-potato-and-green-beans.jpg",
+      "/post-pics/big-steak-and-shrimp.jpg",
+      "/post-pics/steak-with-potato-and-green-beans-2.jpg",
     ],
     items: [
       { name: "Porterhouse (24–26 oz)", price: "98" },
@@ -61,12 +61,21 @@ const dinnerMenu: MenuCategory[] = [
     ],
   },
   {
+    category: "Sides to Share",
+    items: [
+      { name: "Sautéed Mushrooms", price: "12", desc: "Pan-seared in garlic butter" },
+      { name: "Classic Onion Rings", price: "10", desc: "Hand-breaded sweet onion rings fried golden" },
+      { name: "Macaroni & Cheese", price: "14", desc: "Rich, creamy baked pasta with a premium cheese blend" },
+    ],
+  },
+
+  {
     category: "From the Sea",
     images: [
-      "/menu/menu_sea_scallops_1773956557333.png",
-      "/menu/menu_lobster_tail_1773956592367.png",
-      "/menu/menu_seafood_pasta_1773956576076.png",
-      "/menu/fat_chef_seafood.png"
+      "/post-pics/shrimp-entree.jpg",
+      "/post-pics/surf-and-turf.jpg",
+      "/post-pics/seafood-pasta-1.jpg",
+      "/post-pics/shrimp-cocktail-2.jpg"
     ],
     items: [
       { name: "Sea Scallops", price: "68", desc: "Five pan-seared scallops, white wine & garlic butter" },
@@ -80,7 +89,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Perfect Pasta",
-    images: ["/menu/menu_seafood_pasta_1773956576076.png"],
+    images: ["/post-pics/seafood-pasta-1.jpg"],
     items: [
       { name: "Seafood Pasta", price: "78", desc: "Lobster, shrimp, scallops & clams in garlic parmesan cream" },
       { name: "Basil Chicken Pasta", price: "64", desc: "Pan-seared chicken, artichokes, tomatoes, and basil" },
@@ -89,7 +98,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Desserts",
-    images: ["/menu/fat_chef_dessert.png"],
+    images: ["/post-pics/creme-brulee.jpg"],
     items: [
       { name: "Vanilla Bean Crème Brûlée", price: "16" },
       { name: "Spiced Carrot Cake with Cream Cheese Frosting", price: "16" },
@@ -299,6 +308,14 @@ function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight
           {cat.items.map((item) => (
             <MenuRow key={item.name} item={item} />
           ))}
+          {cat.footer && (
+            <motion.p
+              variants={rowIn}
+              className="font-sans text-[11.5px] text-[#A6998A] italic mt-5 leading-relaxed"
+            >
+              {cat.footer}
+            </motion.p>
+          )}
         </motion.div>
       </div>
     </div>
@@ -315,17 +332,21 @@ export default function MenuPage() {
       {/* Hero Header */}
       <div className="relative h-[35vh] md:h-[45vh] w-full flex flex-col items-center justify-center overflow-hidden">
         <Image
-          src="https://static.wixstatic.com/media/11062b_a1ea136152184e7b89aa72d3a910d0fb~mv2.jpg/v1/fill/w_1225,h_444,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_a1ea136152184e7b89aa72d3a910d0fb~mv2.jpg"
+          src="/post-pics/big-steak-and-shrimp.jpg"
           alt="The Fat Chef signature steak dish" fill className="object-cover opacity-20" priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
-        <div className="relative z-10 text-center px-4">
-          <p className="font-sans text-[11px] md:text-[12px] font-semibold tracking-[0.3em] uppercase text-[#C5A059] mb-4">
-            Curated Culinary Excellence
-          </p>
+        <div className="relative z-10 text-center px-4 flex flex-col items-center">
+          <Image 
+            src="https://static.wixstatic.com/media/019c1a_c87be2dca2204b02a9aed5f1a5f72057~mv2.png/v1/fill/w_464,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Asset%201Vector.png" 
+            alt="The Fat Chef Logo" width={180} height={54} className="object-contain mb-6 opacity-90" 
+          />
           <h1 className="font-serif text-5xl md:text-7xl font-bold text-[#F0EBE1] tracking-tight">
             Our Menus
           </h1>
+          <p className="mt-6 font-serif italic text-[#C5A059] text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
+            &ldquo;You’ll never trust a skinny chef again when you visit The Fat Chef. In Rogers!&rdquo;
+          </p>
           <div className="mt-6 flex items-center justify-center gap-4">
             <span className="w-12 h-px bg-gradient-to-r from-transparent to-[rgba(197,160,89,0.6)]" />
             <span className="w-1.5 h-1.5 rounded-full bg-[#C5A059]" />
@@ -369,9 +390,8 @@ export default function MenuPage() {
                 <ImageCategoryBlock key={cat.category} cat={cat} imageRight={i % 2 !== 0} />
               ))}
               
-              <div className="py-12 flex justify-center text-center">
+              <div className="py-8 flex justify-center text-center">
                  <p className="font-sans text-[11px] text-[#6A5E4E] italic max-w-sm px-4">
-                  * Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)
                  </p>
               </div>
             </div>

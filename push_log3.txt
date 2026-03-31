@@ -1,0 +1,20 @@
+﻿git : To https://github.com
+/noahbarfield1/fat-chef-web
+.git
+At line:1 char:1
++ git push origin 
+temp-menu-push:main 2>&1 | 
+Out-File push_log3.txt -En 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~
+    + CategoryInfo         
+     : NotSpecified: (To   
+  https://gith...at-chef   
+ -web.git:String) [], R    
+emoteException
+    + FullyQualifiedErrorI 
+   d : NativeCommandError
+ 
+   bd87536..3c6451a  
+temp-menu-push -> main
