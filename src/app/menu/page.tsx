@@ -62,6 +62,11 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Sides to Share",
+    images: [
+      "/post-pics/onion-rings.jpg",
+      "/post-pics/macaroni.jpg",
+      "/post-pics/mushrooms-1.jpg"
+    ],
     items: [
       { name: "Sautéed Mushrooms", price: "12", desc: "Pan-seared in garlic butter" },
       { name: "Classic Onion Rings", price: "10", desc: "Hand-breaded sweet onion rings fried golden" },
