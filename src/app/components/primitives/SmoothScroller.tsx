@@ -5,7 +5,9 @@ import { ReactNode } from 'react';
 
 export default function SmoothScroller({ children }: { children: ReactNode }) {
   return (
-    <ReactLenis root options={{ lerp: 0.07, syncTouch: true }}>
+    // syncTouch: false — let iOS handle its own momentum scroll natively.
+    // JS-driven smooth scroll on touch feels laggy and fights the browser.
+    <ReactLenis root options={{ lerp: 0.09, syncTouch: false }}>
       {children as any}
     </ReactLenis>
   );

@@ -2,6 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    // Serve WebP/AVIF — smaller file sizes with same visual quality
+    formats: ["image/avif", "image/webp"],
+    // Common mobile breakpoints to ensure correct srcset sizes are generated
+    deviceSizes: [390, 640, 750, 828, 1080, 1200, 1920],
     remotePatterns: [
       {
         protocol: "https",
@@ -12,6 +16,11 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "fat-chef-pages.vercel.app",
         pathname: "/menu/**",
+      },
+      {
+        protocol: "https",
+        hostname: "storage.googleapis.com",
+        pathname: "/fat-chef-assets/**",
       },
     ],
   },
