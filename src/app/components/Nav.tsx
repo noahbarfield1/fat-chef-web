@@ -69,12 +69,12 @@ export default function Nav() {
                 )}
               </Link>
             ))}
-            <Link
-              href="/reservations"
+            <a
+              href="tel:4792025106"
               className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase px-5 py-2.5 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#070707] transition-all duration-300"
             >
               479.202.5106
-            </Link>
+            </a>
           </nav>
 
           <button

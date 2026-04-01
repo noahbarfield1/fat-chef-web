@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  // Mocking the V4 Google Places integration from The Agency Pitch Portal
   const mockReviews = [
     {
       id: "rev_1",
@@ -25,9 +24,6 @@ export async function GET() {
       time: "2 months ago"
     }
   ];
-
-  // Simulate network delay to show off GSAP loading skeleton if needed
-  await new Promise(resolve => setTimeout(resolve, 800));
 
   return NextResponse.json({ reviews: mockReviews });
 }

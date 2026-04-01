@@ -4,6 +4,10 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import Image from "next/image";
 
+// Note: metadata cannot be exported from "use client" components.
+// SEO for this page is set in the parent layout via generateMetadata in a server wrapper.
+// To add page-specific metadata without removing "use client", wrap in a server layout file.
+
 // ─── TYPES ────────────────────────────────────────────────────────────────────
 type MenuItem = { name: string; price: string; desc?: string };
 type MenuCategory = {
@@ -40,6 +44,8 @@ const dinnerMenu: MenuCategory[] = [
       { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
       { name: "Caesar", price: "12", desc: "Romaine with classic Caesar dressing" },
       { name: "Caprese", price: "18", desc: "Fresh mozzarella, tomatoes, and balsamic glaze" },
+      { name: "Dinner Salad", price: "36", desc: "Romaine & spinach with salmon and shrimp, warm bacon vinaigrette" },
+      { name: "Soup Du Jour", price: "10 / 15", desc: "Cup or Bowl — ask your server" },
     ],
   },
   {
@@ -339,6 +345,7 @@ export default function MenuPage() {
         <Image
           src="/post-pics/big-steak-and-shrimp.jpg"
           alt="The Fat Chef signature steak dish" fill className="object-cover opacity-20" priority
+          sizes="100vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-[#0a0a0a]/50" />
         <div className="relative z-10 text-center px-4 flex flex-col items-center">
@@ -394,11 +401,7 @@ export default function MenuPage() {
               {dinnerMenu.map((cat, i) => (
                 <ImageCategoryBlock key={cat.category} cat={cat} imageRight={i % 2 !== 0} />
               ))}
-              
-              <div className="py-8 flex justify-center text-center">
-                 <p className="font-sans text-[11px] text-[#6A5E4E] italic max-w-sm px-4">
-                 </p>
-              </div>
+
             </div>
           ) : (
             <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 md:py-24">

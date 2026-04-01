@@ -14,12 +14,15 @@ export default function LocationSection() {
         <iframe 
           src="https://maps.google.com/maps?q=The%20Fat%20Chef,%2014550%20E%20Hwy%2012,%20Rogers,%20AR%2072756&t=&z=14&ie=UTF8&iwloc=&output=embed" 
           width="100%" height="100%" 
+          referrerPolicy="no-referrer-when-downgrade"
           style={{ 
             border: 0, 
             // Invert colors, shift hue to keep water blue but land dark, bump contrast to make roads pop
             filter: "invert(90%) hue-rotate(180deg) brightness(85%) contrast(120%) saturate(130%)" 
           }} 
-          allowFullScreen loading="lazy">
+          allowFullScreen loading="lazy"
+          title="The Fat Chef location map"
+        >
         </iframe>
       </div>
       

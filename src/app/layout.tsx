@@ -37,8 +37,42 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Restaurant",
+    "name": "The Fat Chef",
+    "url": "https://www.thefatchefnwa.com",
+    "telephone": "+14792025106",
+    "email": "TheFatChefNWA@gmail.com",
+    "priceRange": "$$$",
+    "servesCuisine": ["American", "Steakhouse", "Seafood"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "14550 E HWY 12",
+      "addressLocality": "Rogers",
+      "addressRegion": "AR",
+      "postalCode": "72756",
+      "addressCountry": "US"
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Wednesday", "Thursday", "Friday", "Saturday"],
+        "opens": "17:00",
+        "closes": "21:00"
+      }
+    ],
+    "hasMap": "https://www.google.com/maps/dir//The+Fat+Chef,+14550+E+Hwy+12,+Rogers,+AR+72756"
+  };
+
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body className="antialiased bg-[#070707] text-[#F0EBE1]" suppressHydrationWarning>
         <SmoothScroller>
           <Nav />
