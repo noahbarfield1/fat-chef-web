@@ -7,9 +7,16 @@ import { useEffect, useState } from "react";
 export type Review = {
   id: string;
   authorName: string;
+  authorPhoto?: string;
   rating: number;
   text: string;
   time: string;
+};
+
+type ReviewsApiResponse = {
+  reviews: Review[];
+  rating?: number;
+  totalReviews?: number;
 };
 
 const StarIcon = ({ filled }: { filled: boolean }) => (
@@ -58,13 +65,17 @@ const cardVariant: Variants = {
 
 export default function Testimonials() {
   const [reviews, setReviews] = useState<Review[]>([]);
+  const [rating, setRating] = useState(4.5);
+  const [totalReviews, setTotalReviews] = useState(257);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/reviews')
       .then(res => res.json())
-      .then(data => {
+      .then((data: ReviewsApiResponse) => {
         setReviews(data.reviews || []);
+        if (data.rating) setRating(data.rating);
+        if (data.totalReviews) setTotalReviews(data.totalReviews);
         setLoading(false);
       })
       .catch(() => setLoading(false));
@@ -93,11 +104,11 @@ export default function Testimonials() {
           <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 border border-[rgba(197,160,89,0.2)] rounded-full">
             <GoogleIcon />
             <span className="font-sans text-[11px] tracking-widest uppercase text-[#8A7E6E]">
-              4.5 Stars on Google
+              {rating.toFixed(1)} Stars · {totalReviews}+ Google Reviews
             </span>
             <div className="flex items-center gap-0.5 ml-1">
               {[1, 2, 3, 4, 5].map((i) => (
-                <StarIcon key={i} filled={i <= 4} />
+                <StarIcon key={i} filled={i <= Math.round(rating)} />
               ))}
             </div>
           </div>

@@ -25,3 +25,9 @@ env:
   # When the restaurant gets their OpenTable RID, add it here as a plain env var:
   # - variable: NEXT_PUBLIC_OPENTABLE_RID
   #   value: "12345678"
+
+  # ── Google Places API — real reviews for The Fat Chef ────────────────────
+  - variable: GOOGLE_PLACES_API_KEY
+    value: AIzaSyCfSYg7ATYFFnUTETbLONQid3SHTaqtLKI
+  - variable: GOOGLE_PLACE_ID
+    value: ChIJwYayRs49yYcR28LGHzEDegg
