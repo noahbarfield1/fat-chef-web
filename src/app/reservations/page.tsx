@@ -1,21 +1,26 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import Link from "next/link";
+
+function OpenTableWidget() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!containerRef.current) return;
+    const existing = containerRef.current.querySelector("script");
+    if (existing) existing.remove();
+
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src = "//www.opentable.com/widget/reservation/loader?rid=1503088&type=standard&theme=standard&color=1&dark=true&iframe=true&domain=com&lang=en-US&newtab=false&ot_source=Restaurant%20website&cfe=true";
+    script.async = true;
+    containerRef.current.appendChild(script);
+  }, []);
+
+  return <div ref={containerRef} className="w-full bg-[#0f0f0f] border border-[rgba(197,160,89,0.15)] p-4 md:p-8" />;
+}
 
 export default function ReservationsPage() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", date: "", guests: "2", notes: "" });
-  const [sent, setSent] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    const subject = encodeURIComponent(`Reservation Request — ${form.name} — ${form.date}`);
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nEmail: ${form.email}\nPhone: ${form.phone}\nDate: ${form.date}\nGuests: ${form.guests}\nNotes: ${form.notes}`
-    );
-    window.location.href = `mailto:TheFatChefNWA@gmail.com?subject=${subject}&body=${body}`;
-    setSent(true);
-  };
 
   return (
     <main className="pt-20 bg-[#070707] min-h-screen">
@@ -69,59 +74,7 @@ export default function ReservationsPage() {
 
           {/* Form */}
           <motion.div initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.15, ease: [0.16,1,0.3,1] }}>
-            {sent ? (
-              <div className="h-full flex flex-col items-center justify-center border border-[rgba(197,160,89,0.2)] p-16 text-center">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#C5A059" strokeWidth="1.5" className="mb-6" aria-hidden="true">
-                  <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                  <polyline points="22 4 12 14.01 9 11.01"/>
-                </svg>
-                <p className="font-serif text-2xl font-bold text-[#F0EBE1] mb-3">Request Sent</p>
-                <p className="font-sans text-[14px] text-[#6A5E4E] mb-8">We&apos;ll be in touch shortly to confirm.</p>
-                <Link href="/" className="font-sans text-[11px] font-semibold tracking-[0.16em] uppercase px-8 py-3 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[rgba(197,160,89,0.08)] transition-all duration-300">
-                  Back to Home
-                </Link>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="border border-[rgba(197,160,89,0.15)] bg-[#0f0f0f] p-8 md:p-10 flex flex-col gap-5" aria-label="Reservation request form">
-                <h2 className="font-serif text-2xl font-bold text-[#F0EBE1] mb-2">Request a Reservation</h2>
-                {[
-                  { id: "name",  label: "Full Name",        type: "text",  req: true,  ph: "Your name" },
-                  { id: "email", label: "Email Address",    type: "email", req: true,  ph: "your@email.com" },
-                  { id: "phone", label: "Phone Number",     type: "tel",   req: false, ph: "479-000-0000" },
-                  { id: "date",  label: "Preferred Date",   type: "date",  req: true,  ph: "" },
-                ].map((f) => (
-                  <div key={f.id}>
-                    <label htmlFor={f.id} className="block font-sans text-[10px] tracking-[0.16em] uppercase text-[#5A4E40] mb-2">
-                      {f.label}{f.req && <span className="text-[#C5A059] ml-1">*</span>}
-                    </label>
-                    <input id={f.id} type={f.type} placeholder={f.ph} required={f.req}
-                      value={form[f.id as keyof typeof form]}
-                      onChange={(e) => setForm((p) => ({ ...p, [f.id]: e.target.value }))}
-                      className="w-full bg-[#161616] border border-[rgba(197,160,89,0.18)] text-[#F0EBE1] font-sans text-sm px-4 py-3 outline-none focus:border-[#C5A059] transition-colors placeholder:text-[#3A3228]"
-                    />
-                  </div>
-                ))}
-                <div>
-                  <label htmlFor="guests" className="block font-sans text-[10px] tracking-[0.16em] uppercase text-[#5A4E40] mb-2">Party Size <span className="text-[#C5A059]">*</span></label>
-                  <select id="guests" value={form.guests} onChange={(e) => setForm((p) => ({ ...p, guests: e.target.value }))}
-                    className="w-full bg-[#161616] border border-[rgba(197,160,89,0.18)] text-[#F0EBE1] font-sans text-sm px-4 py-3 outline-none focus:border-[#C5A059] transition-colors">
-                    {[1,2,3,4,5,6,7,8].map((n) => <option key={n} value={n}>{n} {n===1?"Guest":"Guests"}</option>)}
-                    <option value="9+">9+ Guests (Private Event)</option>
-                  </select>
-                </div>
-                <div>
-                  <label htmlFor="notes" className="block font-sans text-[10px] tracking-[0.16em] uppercase text-[#5A4E40] mb-2">Special Requests</label>
-                  <textarea id="notes" rows={3} placeholder="Allergies, occasions, dietary needs..."
-                    value={form.notes} onChange={(e) => setForm((p) => ({ ...p, notes: e.target.value }))}
-                    className="w-full bg-[#161616] border border-[rgba(197,160,89,0.18)] text-[#F0EBE1] font-sans text-sm px-4 py-3 outline-none focus:border-[#C5A059] transition-colors resize-none placeholder:text-[#3A3228]"
-                  />
-                </div>
-                <button type="submit" className="mt-1 w-full py-4 bg-[#C5A059] text-[#070707] font-sans text-xs font-bold tracking-[0.2em] uppercase hover:bg-[#E6C875] transition-colors duration-300">
-                  Send Reservation Request
-                </button>
-                <p className="font-sans text-[11px] text-center text-[#3A3228]">We confirm within 24 hours by phone or email.</p>
-              </form>
-            )}
+            <OpenTableWidget />
           </motion.div>
         </div>
       </div>
