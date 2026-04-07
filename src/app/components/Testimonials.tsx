@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
-
 import { useEffect, useState } from "react";
 
 export type Review = {
@@ -63,6 +62,63 @@ const cardVariant: Variants = {
   show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.16, 1, 0.3, 1] } },
 };
 
+// ── Truncated review card with "Read more" ──
+function ReviewCard({ review, index }: { review: Review; index: number }) {
+  const [expanded, setExpanded] = useState(false);
+  const isLong = review.text.length > 180;
+
+  return (
+    <motion.article
+      variants={cardVariant}
+      className={`relative p-7 flex flex-col gap-4 ${index >= 3 ? "hidden md:flex" : ""}`}
+      style={{
+        background: "rgba(255,255,255,0.025)",
+        border: "1px solid rgba(197,160,89,0.10)",
+        borderRadius: "2px",
+      }}
+    >
+      <div
+        className="absolute top-0 left-0 right-0 h-px"
+        style={{ background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.5), transparent)" }}
+      />
+
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-0.5">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <StarIcon key={i} filled={i <= review.rating} />
+          ))}
+        </div>
+        <GoogleIcon />
+      </div>
+
+      <div className="flex-1">
+        <p
+          className={`font-sans text-[13px] leading-relaxed text-[#B8A99A] ${
+            !expanded && isLong ? "line-clamp-3 sm:line-clamp-5" : ""
+          }`}
+        >
+          &ldquo;{review.text}&rdquo;
+        </p>
+        {isLong && (
+          <button
+            onClick={() => setExpanded(!expanded)}
+            className="font-sans text-[11px] text-[#C5A059] mt-2 tracking-wide uppercase hover:text-[#E6C875] transition-colors"
+          >
+            {expanded ? "Show less" : "Read more"}
+          </button>
+        )}
+      </div>
+
+      <div className="pt-3 border-t border-[rgba(197,160,89,0.08)] flex items-center justify-between">
+        <p className="font-serif text-sm text-[#E6C875]">{review.authorName}</p>
+        <p className="font-sans text-[10px] tracking-widest uppercase text-[#5A4E3E]">
+          {review.time}
+        </p>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Testimonials() {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [rating, setRating] = useState(4.5);
@@ -98,7 +154,7 @@ export default function Testimonials() {
           <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-[#C5A059] mb-4">
             Guest Experiences
           </p>
-          <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#F0EBE1] mb-4">
+          <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#F0EBE1] mb-4" style={{ textWrap: 'balance' } as React.CSSProperties}>
             What Our Guests Are Saying
           </h2>
           <div className="inline-flex items-center gap-2 mt-4 px-4 py-2 border border-[rgba(197,160,89,0.2)] rounded-full">
@@ -126,42 +182,8 @@ export default function Testimonials() {
             viewport={{ once: true, margin: "-60px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
           >
-            {reviews.map((review: Review) => (
-              <motion.article
-                key={review.id}
-                variants={cardVariant}
-                className="relative p-7 flex flex-col gap-4"
-                style={{
-                  background: "rgba(255,255,255,0.025)",
-                  border: "1px solid rgba(197,160,89,0.10)",
-                  borderRadius: "2px",
-                }}
-              >
-                <div
-                  className="absolute top-0 left-0 right-0 h-px"
-                  style={{ background: "linear-gradient(90deg, transparent, rgba(197,160,89,0.5), transparent)" }}
-                />
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-0.5">
-                    {[1, 2, 3, 4, 5].map((i) => (
-                      <StarIcon key={i} filled={i <= review.rating} />
-                    ))}
-                  </div>
-                  <GoogleIcon />
-                </div>
-
-                <p className="font-sans text-[13px] leading-relaxed text-[#B8A99A] flex-1">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-
-                <div className="pt-3 border-t border-[rgba(197,160,89,0.08)] flex items-center justify-between">
-                  <p className="font-serif text-sm text-[#E6C875]">{review.authorName}</p>
-                  <p className="font-sans text-[10px] tracking-widest uppercase text-[#5A4E3E]">
-                    {review.time}
-                  </p>
-                </div>
-              </motion.article>
+            {reviews.map((review: Review, index: number) => (
+              <ReviewCard key={review.id} review={review} index={index} />
             ))}
           </motion.div>
         )}

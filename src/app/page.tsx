@@ -71,6 +71,42 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* DINING ROOM AMBIANCE */}
+      <section className="w-full flex justify-center py-20 px-6 bg-[#0a0a0a]" aria-label="The atmosphere">
+        <div className="w-full max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-10"
+          >
+            <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-[#C5A059] mb-3">The Setting</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#F0EBE1]">Log Cabin Charm, Fine Dining Prestige</h2>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.9, delay: 0.15 }}
+            className="relative w-full overflow-hidden"
+            style={{ aspectRatio: "16/7" }}
+          >
+            <LuxImage
+              src="/post-pics/dining-room-interior.jpg"
+              alt="The Fat Chef dining room — rustic log cabin interior with elegant table settings"
+              fill
+              className="object-cover"
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,10,10,0.6)] via-transparent to-[rgba(10,10,10,0.2)]" />
+            <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10">
+              <p className="font-serif text-xl md:text-2xl font-bold text-[#F0EBE1]">Intimate & Warm</p>
+              <p className="font-sans text-xs text-[#C5A059] mt-1 tracking-widest uppercase">An Evening You Won&apos;t Forget</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
       {/* MENU PREVIEW */}
       <section className="w-full flex justify-center py-24 px-6 bg-[#0a0a0a]" aria-label="Menu preview">
         <div className="w-full max-w-6xl">

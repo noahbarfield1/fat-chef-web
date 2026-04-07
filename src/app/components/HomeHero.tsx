@@ -7,8 +7,9 @@ import { Great_Vibes } from "next/font/google";
 
 const greatVibes = Great_Vibes({ weight: "400", subsets: ["latin"], display: "swap" });
 
-// ── Hero video (served from GCS) ────────────────
+// ── Hero video (served from GCS on desktop, compressed local on mobile) ──
 const VIDEO_SRC = "https://storage.googleapis.com/fat-chef-assets/videos/fat-chef-hero.mp4";
+const VIDEO_MOBILE = "/videos/fat-chef-hero-mobile.mp4";
 // ────────────────────────────────────────────────
 
 const BG = "/post-pics/candle-red-ambiance-muted.jpg";
@@ -66,10 +67,17 @@ export default function HomeHero() {
 
       {/* Background — video on desktop, static image on mobile */}
       <motion.div style={{ y: bgY }} className="absolute inset-0 scale-[1.04]">
-        {!isMobile && VIDEO_SRC
-          ? <video src={VIDEO_SRC} autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover" aria-hidden="true" />
-          : <LuxImage src={BG} alt="The Fat Chef restaurant interior" fill priority className="object-cover" sizes="100vw" />
-        }
+        <video
+          src={isMobile ? VIDEO_MOBILE : VIDEO_SRC}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload={isMobile ? "metadata" : "auto"}
+          poster={BG}
+          className="absolute inset-0 w-full h-full object-cover"
+          aria-hidden="true"
+        />
         <div className="absolute inset-0 bg-gradient-to-t from-[#030303] via-[rgba(3,3,3,0.5)] to-[rgba(3,3,3,0.2)]" />
         <div className="absolute inset-0 bg-gradient-to-r from-[rgba(3,3,3,0.4)] via-transparent to-[rgba(3,3,3,0.4)]" />
         <div className="absolute inset-0" style={{ background: "radial-gradient(ellipse at center, transparent 35%, rgba(3,3,3,0.6) 100%)" }} />

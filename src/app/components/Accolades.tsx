@@ -81,7 +81,7 @@ export default function Accolades() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-60px" }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-3"
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3 justify-items-center"
         >
           {awards.map((a) => (
             <motion.div

@@ -187,7 +187,7 @@ function RotatingImage({ images, alt }: { images: string[]; alt: string }) {
 
   useEffect(() => {
     if (!images || images.length <= 1) return;
-    const timer = setInterval(() => setIdx((i) => (i + 1) % images.length), 5000);
+    const timer = setInterval(() => setIdx((i) => (i + 1) % images.length), 2500);
     return () => clearInterval(timer);
   }, [images]);
 
@@ -251,13 +251,13 @@ function MenuRow({ item }: { item: MenuItem }) {
       className="group border-b border-[rgba(197,160,89,0.06)] last:border-0"
       style={{ paddingBlock: "0.85rem" }}
     >
-      <div className="flex items-baseline gap-2">
-        <span className="font-serif text-[16px] md:text-[17px] font-semibold text-[#F0EBE1] group-hover:text-[#E6C875] transition-colors duration-300 shrink-0">
+      <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+        <span className="font-serif text-[16px] md:text-[17px] font-semibold text-[#F0EBE1] group-hover:text-[#E6C875] transition-colors duration-300 leading-tight">
           {item.name}
         </span>
-        <span className="flex-1 border-b border-dotted border-[rgba(197,160,89,0.22)] mb-[6px]" aria-hidden="true" />
+        <span className="hidden sm:block flex-1 border-b border-dotted border-[rgba(197,160,89,0.22)] mb-[6px]" aria-hidden="true" />
         {priceDisplay && (
-          <span className="font-serif text-[15px] pb-0.5 font-bold text-[#C5A059] shrink-0 tabular-nums">
+          <span className="font-serif text-[15px] mt-1 sm:mt-0 pb-0.5 font-bold text-[#C5A059] shrink-0 tabular-nums">
             {priceDisplay}
           </span>
         )}
@@ -357,7 +357,7 @@ export default function MenuPage() {
             Our Menus
           </h1>
           <p className="mt-6 font-serif italic text-[#C5A059] text-lg md:text-xl max-w-xl mx-auto leading-relaxed">
-            &ldquo;You’ll never trust a skinny chef again when you visit The Fat Chef. In Rogers!&rdquo;
+            &ldquo;Never trust a skinny chef.&rdquo;
           </p>
           <div className="mt-6 flex items-center justify-center gap-4">
             <span className="w-12 h-px bg-gradient-to-r from-transparent to-[rgba(197,160,89,0.6)]" />
@@ -374,13 +374,13 @@ export default function MenuPage() {
             <button
               key={t}
               onClick={() => setActiveTab(t)}
-              className={`px-10 py-3.5 font-sans text-[12px] font-bold tracking-[0.18em] uppercase transition-all duration-300 ${
+              className={`px-6 sm:px-10 py-3.5 font-sans text-[12px] font-bold tracking-[0.18em] uppercase transition-all duration-300 ${
                 activeTab === t 
                   ? "bg-[#C5A059] text-black" 
                   : "text-[#8A7E6E] hover:text-[#E6C875] hover:bg-[rgba(197,160,89,0.05)]"
               }`}
             >
-              {t === "dinner" ? "Dinner Collection" : "Cocktails & Wine"}
+              {t === "dinner" ? (<><span className="sm:hidden">Dinner</span><span className="hidden sm:inline">Dinner Collection</span></>) : (<><span className="sm:hidden">Bar &amp; Wine</span><span className="hidden sm:inline">Cocktails &amp; Wine</span></>)}
             </button>
           ))}
         </div>

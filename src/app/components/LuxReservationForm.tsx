@@ -126,11 +126,11 @@ function LuxSelect({
           border transition-all duration-300 outline-none focus-visible:ring-0
           ${open
             ? "border-[#C5A059] bg-[#0f0e0b]"
-            : "border-[rgba(197,160,89,0.25)] bg-[#0a0a0a] hover:border-[rgba(197,160,89,0.5)] hover:bg-[#0f0e0b]"
+            : "border-[rgba(197,160,89,0.35)] bg-[#0a0a0a] hover:border-[rgba(197,160,89,0.5)] hover:bg-[#0f0e0b]"
           }
         `}
       >
-        <span className={`flex-shrink-0 transition-colors duration-300 ${open ? "text-[#C5A059]" : "text-[#5A4E3E] group-hover:text-[#C5A059]"}`}>
+        <span className={`flex-shrink-0 transition-colors duration-300 ${open ? "text-[#C5A059]" : "text-[#8A7E6E] group-hover:text-[#C5A059]"}`}>
           {icon}
         </span>
         <span className="flex-1 font-sans text-[13px] tracking-wide text-[#F0EBE1] truncate">
@@ -265,7 +265,7 @@ export default function LuxReservationForm() {
         <div className="flex flex-col gap-3 mb-8">
           {/* Date */}
           <div>
-            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#5A4E3E] mb-2">
+            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#8A7E6E] mb-2">
               Date
             </label>
             <LuxSelect
@@ -276,7 +276,7 @@ export default function LuxReservationForm() {
               onChange={setDate}
             />
             {date && (
-              <p className="font-sans text-[11px] text-[#4A3E2E] mt-1.5 pl-1">
+              <p className="font-sans text-[11px] text-[#6A5E4E] mt-1.5 pl-1">
                 {formatDisplayDate(date)}
               </p>
             )}
@@ -284,7 +284,7 @@ export default function LuxReservationForm() {
 
           {/* Time */}
           <div>
-            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#5A4E3E] mb-2">
+            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#8A7E6E] mb-2">
               Time
             </label>
             <LuxSelect
@@ -298,7 +298,7 @@ export default function LuxReservationForm() {
 
           {/* Party Size */}
           <div>
-            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#5A4E3E] mb-2">
+            <label className="block font-sans text-[10px] tracking-[0.2em] uppercase text-[#8A7E6E] mb-2">
               Party Size
             </label>
             <LuxSelect
@@ -347,7 +347,7 @@ export default function LuxReservationForm() {
       {/* Hours note */}
       <div className="mt-5 px-1 flex items-start gap-2">
         <div className="w-px h-8 bg-gradient-to-b from-[#C5A059] to-transparent flex-shrink-0 mt-0.5" />
-        <p className="font-sans text-[11px] text-[#4A3E2E] leading-relaxed">
+        <p className="font-sans text-[11px] text-[#6A5E4E] leading-relaxed">
           We are open Wednesday–Saturday, 5:00–9:00 PM.<br/>
           For parties of 9 or more, please{" "}
           <a href="tel:4792025106" className="text-[#5A4E3E] underline underline-offset-2 hover:text-[#C5A059] transition-colors">

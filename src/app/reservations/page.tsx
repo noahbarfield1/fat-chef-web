@@ -77,7 +77,7 @@ export default function ReservationsPage() {
 
             <div className="border border-[rgba(197,160,89,0.12)] bg-[rgba(197,160,89,0.02)] p-6">
               <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-[#6A5E4E] mb-4">Good to Know</p>
-              <ul className="font-sans text-[13px] text-[#5A4E40] leading-relaxed space-y-3">
+              <ul className="font-sans text-[13px] text-[#8A7E6E] leading-relaxed space-y-3">
                 <li className="flex items-start gap-2">
                   <span className="text-[#C5A059] mt-px flex-shrink-0">·</span>
                   <span>We confirm every reservation within 24 hours by phone or email</span>

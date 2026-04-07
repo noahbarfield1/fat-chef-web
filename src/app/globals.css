@@ -111,3 +111,23 @@ html.lenis body {
 }
 /* Belt-and-suspenders: nuke outline on the html/body scroll root on mobile */
 html:focus, body:focus { outline: none !important; }
+
+/* ── Mobile UX Sweep ── */
+@media (max-width: 640px) {
+  /* Scale down oversized headings */
+  h1 { font-size: clamp(32px, 10vw, 56px) !important; }
+  h2 { font-size: clamp(24px, 7vw, 40px) !important; }
+  h3 { font-size: clamp(20px, 6vw, 32px) !important; }
+
+  /* Prevent text from kissing screen edges */
+  section { padding-left: max(1rem, env(safe-area-inset-left)) !important; padding-right: max(1rem, env(safe-area-inset-right)) !important; }
+
+  /* Increase tap targets — minimum 44px per Apple HIG */
+  a, button { min-height: 44px; }
+
+  /* Menu items: prevent horizontal overflow */
+  .menu-row, [style*="paddingBlock"] {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+}
