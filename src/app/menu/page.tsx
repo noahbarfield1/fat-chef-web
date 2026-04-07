@@ -209,7 +209,6 @@ function RotatingImage({ images, alt }: { images: string[]; alt: string }) {
             alt={alt}
             fill
             quality={65}
-            priority={idx === 0}
             className="object-cover"
             sizes="(max-width:768px) 100vw, 45vw"
           />
