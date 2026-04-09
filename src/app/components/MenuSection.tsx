@@ -32,7 +32,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Salads & Soups",
-    images: ["/post-pics/salads-1.jpg"],
+    images: ["/post-pics/salads-1.jpg", "/post-pics/tomato-soup.jpg"],
     items: [
       { name: "House Salad", price: "12", desc: "Mixed greens with choice of house-made dressing" },
       { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
@@ -63,6 +63,7 @@ const dinnerMenu: MenuCategory[] = [
     category: "From the Sea",
     images: [
       "/post-pics/shrimp-entree.jpg",
+      "/post-pics/shrimp-cocktail-new.jpg",
       "/post-pics/surf-and-turf.jpg",
       "/post-pics/seafood-pasta-1.jpg",
     ],
@@ -87,7 +88,7 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Desserts",
-    images: ["/post-pics/creme-brulee.jpg"],
+    images: ["/post-pics/creme-brulee.jpg", "/post-pics/strawberry-shortcake.jpg"],
     items: [
       { name: "Vanilla Bean Crème Brûlée", price: "16" },
       { name: "Spiced Carrot Cake with Cream Cheese Frosting", price: "16" },

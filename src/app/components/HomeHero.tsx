@@ -1,5 +1,4 @@
 "use client";
-import LuxImage from "./primitives/LuxImage";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
@@ -21,6 +20,7 @@ function Char({ char, delay }: { char: string; delay: number }) {
       animate={{ y: "0%", opacity: 1 }}
       transition={{ duration: 0.85, delay, ease: [0.16, 1, 0.3, 1] }}
       className="inline-block"
+      style={{ willChange: "transform, opacity" }}
     >
       {char}
     </motion.span>
@@ -55,13 +55,13 @@ export default function HomeHero() {
   const moveY = isMobile ? "0%" : moveYDesktop;
 
   return (
-    <section ref={ref} id="home" className="relative h-screen min-h-[700px] flex items-center justify-center overflow-hidden bg-[#030303]" aria-label="Welcome to The Fat Chef">
+    <section ref={ref} id="home" className="relative h-screen min-h-[700px] flex items-center justify-center pt-20 overflow-hidden bg-[#030303]" aria-label="Welcome to The Fat Chef">
 
       {/* Letterbox open — desktop only, too heavy for mobile composite layers */}
       {!isMobile && (
         <>
-          <motion.div initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.3, delay: 0.15, ease: [0.76,0,0.24,1] }} style={{ originY: 0 }} className="absolute top-0 inset-x-0 h-[12vh] bg-[#030303] z-30 pointer-events-none" aria-hidden="true" />
-          <motion.div initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.3, delay: 0.15, ease: [0.76,0,0.24,1] }} style={{ originY: 1 }} className="absolute bottom-0 inset-x-0 h-[12vh] bg-[#030303] z-30 pointer-events-none" aria-hidden="true" />
+          <motion.div initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.3, delay: 0.15, ease: [0.76,0,0.24,1] }} style={{ originY: 0, willChange: "transform" }} className="absolute top-0 inset-x-0 h-[12vh] bg-[#030303] z-30 pointer-events-none" aria-hidden="true" />
+          <motion.div initial={{ scaleY: 1 }} animate={{ scaleY: 0 }} transition={{ duration: 1.3, delay: 0.15, ease: [0.76,0,0.24,1] }} style={{ originY: 1, willChange: "transform" }} className="absolute bottom-0 inset-x-0 h-[12vh] bg-[#030303] z-30 pointer-events-none" aria-hidden="true" />
         </>
       )}
 
@@ -123,11 +123,12 @@ export default function HomeHero() {
 
         {/* Animated Cursive Quote */}
         <motion.div
-          initial={{ clipPath: "inset(-20% 100% -20% -20%)", opacity: 0 }}
-          animate={{ clipPath: "inset(-20% -20% -20% -20%)", opacity: 1 }}
-          transition={{ duration: isMobile ? 1.2 : 2.4, delay: isMobile ? 0.55 : 1.8, ease: "easeInOut" }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, delay: isMobile ? 0.55 : 1.8, ease: [0.16, 1, 0.3, 1] }}
           className={`text-4xl md:text-5xl lg:text-[64px] text-[#FFEDBA] -mt-2 mb-4 flex justify-center text-center w-full relative z-20 ${greatVibes.className}`}
           style={{
+            willChange: "opacity, transform",
             lineHeight: "1.3",
             paddingRight: "10px",
             textShadow: "0 0 12px rgba(255,237,186,0.7), 0 0 24px rgba(197,160,89,0.5), 2px 4px 10px rgba(0,0,0,0.9)"

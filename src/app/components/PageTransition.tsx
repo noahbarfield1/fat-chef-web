@@ -1,12 +1,12 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { usePathname } from "next/navigation";
 
-const columnAnim: any = {
-  initial: { top: 0 },
+const columnAnim: Variants = {
+  initial: { y: "0%" },
   enter: (i: number) => ({
-    top: "100vh",
+    y: "100%",
     transition: {
       duration: 0.85,
       ease: [0.76, 0, 0.24, 1] as const,
@@ -26,10 +26,11 @@ export default function PageTransition({ children }: { children: React.ReactNode
         
         {/* The Incoming Page Content */}
         <motion.div
-           initial={{ opacity: 0, scale: 0.98, filter: "blur(10px)" }}
-           animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+           initial={{ opacity: 0, scale: 0.98 }}
+           animate={{ opacity: 1, scale: 1 }}
            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
            className="w-full h-full"
+           style={{ willChange: "opacity, transform", transform: "translateZ(0)" }}
         >
           {children}
         </motion.div>

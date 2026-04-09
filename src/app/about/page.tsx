@@ -66,20 +66,28 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-4">
-            <div className="relative aspect-[4/3] overflow-hidden">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="relative aspect-[4/3] overflow-hidden col-span-2">
               <Image
-                src="/post-pics/the-fat-chef-owners.jpg"
-                alt="Richard and Christine, founders of The Fat Chef" fill className="object-cover"
+                src="/post-pics/owners-awards.jpg"
+                alt="Richard and Christine holding their Best of Northwest Arkansas awards" fill className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-[rgba(7,7,7,0.4)] to-transparent" />
             </div>
-            <div className="relative aspect-[16/7] overflow-hidden">
+            <div className="relative aspect-[1/1] overflow-hidden">
+              <Image
+                src="/post-pics/richard-award.jpg"
+                alt="Chef Richard holding his People's Choice Best Bite award" fill className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,7,7,0.5)] to-transparent" />
+            </div>
+            <div className="relative aspect-[1/1] overflow-hidden">
               <Image
                 src="/post-pics/dining-room-interior.jpg"
                 alt="The Fat Chef dining room — log cabin interior with elegant table settings" fill className="object-cover"
-                sizes="(max-width: 768px) 100vw, 50vw"
+                sizes="(max-width: 768px) 50vw, 25vw"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[rgba(7,7,7,0.5)] to-transparent" />
             </div>

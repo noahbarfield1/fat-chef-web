@@ -35,8 +35,8 @@ export default function About() {
           {/* Inset second image */}
           <div className="absolute bottom-0 -right-6 w-1/2 aspect-[3/4] border-4 border-[#070707] overflow-hidden hidden md:block">
             <LuxImage
-              src="/post-pics/outdoor-owners-2.jpg"
-              alt="The Fat Chef patio dining area"
+              src="/post-pics/bacon-wrapped-steak.jpg"
+              alt="Quality prime steaks prepared fresh"
               fill
               className="object-cover"
               sizes="25vw"
