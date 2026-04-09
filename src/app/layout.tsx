@@ -21,6 +21,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.thefatchefnwa.com"),
   title: { template: "%s | The Fat Chef", default: "The Fat Chef — Fine Dining in Rogers, AR" },
   description: "Award-winning fine dining in Rogers, Arkansas. USDA Prime steaks, fresh seafood, and handcrafted cuisine. Voted Best Fine Dining & Best Steakhouse in NWA.",
   keywords: "fine dining Rogers AR, steakhouse NWA, seafood Northwest Arkansas, The Fat Chef",

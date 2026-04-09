@@ -17,9 +17,7 @@ env:
   - variable: GOOGLE_CLOUD_PROJECT
     value: constant-cursor-455715-p1
   - variable: NEXT_PUBLIC_APP_URL
-    # TODO: Update this once the Fat Chef backend is created in Firebase
-    # Run: firebase apphosting:backends:create --project constant-cursor-455715-p1
-    value: https://fat-chef-web--constant-cursor-455715-p1.us-central1.hosted.app
+    value: https://www.thefatchefnwa.com
 
   # ── OpenTable (no secrets needed — widget is client-side only) ─────────────
   # When the restaurant gets their OpenTable RID, add it here as a plain env var:
