@@ -157,7 +157,7 @@ export default function HomeHero() {
       </motion.div>
 
       {/* Scroll cue */}
-      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: isMobile ? 1.3 : 3, duration: 1 }} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2" aria-hidden="true">
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: isMobile ? 1.3 : 3, duration: 1 }} className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-2" aria-hidden="true">
         <span className="font-sans text-[9px] tracking-[0.3em] uppercase text-[#5A4E40]">Scroll</span>
         <motion.div animate={{ y: [0, 9, 0] }} transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }} className="w-px h-10 bg-gradient-to-b from-[rgba(197,160,89,0.6)] to-transparent" />
       </motion.div>

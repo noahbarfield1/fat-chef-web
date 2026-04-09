@@ -42,7 +42,7 @@
 }
 
 .nav-glass {
-  background: rgba(7,7,7,0.9);
+  background: rgba(7,7,7,0.98);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
 }

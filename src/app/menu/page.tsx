@@ -369,7 +369,7 @@ export default function MenuPage() {
 
       {/* Sticky Tab Nav */}
       <div className="sticky top-[72px] z-30 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[rgba(197,160,89,0.15)] w-full flex justify-center py-4 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-        <div className="flex border border-[rgba(197,160,89,0.3)] rounded-sm overflow-hidden bg-[#070707]">
+        <div className="flex divide-x divide-[rgba(197,160,89,0.3)] border border-[rgba(197,160,89,0.3)] rounded-sm overflow-hidden bg-[#070707]">
           {(["dinner", "bar"] as const).map((t) => (
             <button
               key={t}

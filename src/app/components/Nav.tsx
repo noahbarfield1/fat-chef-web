@@ -46,7 +46,7 @@ export default function Nav() {
               src="https://static.wixstatic.com/media/019c1a_c87be2dca2204b02a9aed5f1a5f72057~mv2.png/v1/fill/w_464,h_140,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/Asset%201Vector.png"
               alt="The Fat Chef"
               width={150} height={46}
-              className="object-contain h-9 w-auto"
+              className="object-contain h-7 md:h-9 w-auto"
               priority
             />
           </Link>
@@ -97,7 +97,7 @@ export default function Nav() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 nav-glass flex flex-col items-center justify-center gap-8"
+            className="fixed inset-0 z-40 bg-[#070707] flex flex-col items-center justify-center gap-8"
           >
             {links.map((l) => (
               <Link
