@@ -31,9 +31,9 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     images: [{
-      url: "https://static.wixstatic.com/media/019c1a_a4ea7513132c4145933f7cac161a41ce~mv2.jpg",
-      width: 1920, height: 1043,
-      alt: "The Fat Chef Restaurant Interior",
+      url: "/og-image.png",
+      width: 1200, height: 630,
+      alt: "The Fat Chef — Fine Dining in Rogers, AR",
     }],
   },
 };
