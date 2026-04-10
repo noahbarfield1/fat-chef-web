@@ -44,46 +44,65 @@ const dinnerMenu: MenuCategory[] = [
     category: "Salads & Soups",
     images: ["/post-pics/salads-1.jpg", "/post-pics/tomato-soup.jpg"],
     items: [
-      { name: "House Salad", price: "12", desc: "Mixed greens with choice of house-made dressing" },
-      { name: "Wedge Salad", price: "15", desc: "Crisp iceberg, bacon, blue cheese, and tomatoes" },
-      { name: "Caesar", price: "12", desc: "Romaine with classic Caesar dressing" },
-      { name: "Caprese", price: "18", desc: "Fresh mozzarella, tomatoes, and balsamic glaze" },
-      { name: "Dinner Salad", price: "36", desc: "Romaine & spinach with salmon and shrimp, warm bacon vinaigrette" },
+      { name: "House Salad", price: "12", desc: "Special blend of iceberg and romaine lettuce, crudité, blended cheese, and house-made croutons" },
+      { name: "Wedge Salad", price: "15", desc: "Classic Iceberg Wedge with homemade Blue Cheese Dressing, blue cheese crumbles, bacon, tomatoes and scallions" },
+      { name: "Caesar", price: "12", desc: "Crisp Romaine lettuce with homemade Caesar dressing, parmesan, Pecorino Romano cheese, and homemade croutons" },
+      { name: "Caprese", price: "18", desc: "Deliciously perfect tomatoes paired with Fresh Mozzarella, basil micro-greens and balsamic glaze" },
+      { name: "Dinner Salad", price: "36", desc: "Romaine and spinach dinner size salad with salmon and shrimp topped with warm bacon vinaigrette" },
       { name: "Soup Du Jour", price: "10 / 15", desc: "Cup or Bowl — ask your server" },
     ],
   },
   {
-    category: "Prime Steaks",
-    note: "All entrees include starch, vegetable du jour, house salad & fresh baked bread with herbed butter",
-    footer: "* Steak enhancements: Blackened (+$5) · Oscar Style (+$18) · Au Poivre (+$20)",
+    category: "Prime Steak and Land Offerings",
+    note: "All Steak is Prime Meat and Hand Cut Daily. All entrees include starch, vegetable du jour, house salad & fresh baked bread with herbed butter",
+    footer: "Enhancements: Blackened upon request (+$5) · Oscar Style with crab, asparagus, and house-made bearnaise (+$18) · Au Poivre Tri-Colored Peppercorn encrusted with brandy glaze (+$20) · Add a side of Grated Horseradish, Cream, or Melted Blue Cheese (+$7)",
     images: [
       "/post-pics/steak-with-potato-and-green-beans.jpg",
       "/post-pics/big-steak-and-shrimp.jpg",
       "/post-pics/steak-with-potato-and-green-beans-2.jpg",
     ],
     items: [
-      { name: "Porterhouse (24–26 oz)", price: "98" },
-      { name: "T-Bone (24–26 oz)", price: "88" },
-      { name: "Filet (6 oz / 8 oz)", price: "60 / 72", desc: "Bacon wrapped, pan-seared to perfection" },
-      { name: "Ribeye (14–16 oz)", price: "74", desc: "Rich marbling with robust flavor" },
-      { name: "New York Strip (14–16 oz)", price: "70" },
-      { name: "Surf & Turf", price: "128 / 140", desc: "6 oz or 8 oz Filet with 8–10 oz Maine Lobster tail" },
+      { name: "Porterhouse USDA Prime (Charbroiled) 24–26 oz", price: "98", desc: "Cut to Order" },
+      { name: "T-Bone USDA Prime (Charbroiled) 24–26 oz", price: "88", desc: "Cut to Order" },
+      { name: "Filet USDA Prime (Pan Seared) 6 oz / 8 oz", price: "60 / 72", desc: "Bacon wrapped" },
+      { name: "Ribeye USDA Prime (Charbroiled) 14–16 oz", price: "74" },
+      { name: "New York Strip USDA Prime (Pan Seared) 14–16 oz", price: "70" },
+      { name: "Surf & Turf USDA Prime", price: "128 / 140", desc: "6 oz or 8 oz Prime Tenderloin fillet with an 8–10 oz Maine Lobster tail" },
+      { name: "Roasted Garlic Velouté Chicken", price: "38 / 46", desc: "One or Two breasts with caramelized onions" },
     ],
   },
   {
-    category: "Sides to Share",
+    category: "Prime Sides",
     images: [
       "/post-pics/onion-rings.jpg",
       "/post-pics/macaroni.jpg",
       "/post-pics/mushrooms-1.jpg"
     ],
     items: [
-      { name: "Sautéed Mushrooms", price: "12", desc: "Pan-seared in garlic butter" },
-      { name: "Classic Onion Rings", price: "22", desc: "Hand-breaded sweet onion rings fried golden" },
-      { name: "Macaroni & Cheese", price: "14", desc: "Rich, creamy baked pasta with a premium cheese blend" },
+      { name: "Steakhouse Creamed Spinach", price: "14" },
+      { name: "Corn Soufflé", price: "14" },
+      { name: "Steakhouse Mac & Cheese", price: "18", desc: "Cracked black peppercorn white cheddar parmesan with bacon and green onions" },
+      { name: "Sautéed Mushrooms", price: "9" },
+      { name: "Asparagus", price: "7" },
+      { name: "Broccoli", price: "7" },
+      { name: "Caramelized Onions", price: "8" },
+      { name: "Fettuccine", price: "14", desc: "In white wine and garlic parmesan cream sauce" },
     ],
   },
-
+  {
+    category: "Add Ons",
+    images: [
+      "/post-pics/shrimp-entree.jpg",
+      "/post-pics/surf-and-turf.jpg",
+    ],
+    items: [
+      { name: "Grilled Shrimp", price: "28" },
+      { name: "Fried Shrimp", price: "28" },
+      { name: "Scallops", price: "34" },
+      { name: "Classic Walleye", price: "36" },
+      { name: "Maine Lobster Tail", price: "82" },
+    ],
+  },
   {
     category: "From the Sea",
     images: [
@@ -94,22 +113,28 @@ const dinnerMenu: MenuCategory[] = [
       "/post-pics/shrimp-cocktail-2.jpg"
     ],
     items: [
-      { name: "Sea Scallops", price: "68", desc: "Five pan-seared scallops, white wine & garlic butter" },
-      { name: "Chilean Sea Bass", price: "74", desc: "Pan-seared with fresh herbs" },
-      { name: "Crab Cakes", price: "66", desc: "Two lump crab cakes topped with quail eggs" },
-      { name: "Great Northern Walleye", price: "52", desc: "Classically seasoned or Pecan Parmesan encrusted" },
-      { name: "Atlantic Wild Salmon", price: "58", desc: "Pan-seared to medium with herb butter" },
-      { name: "Classic Shrimp Scampi", price: "58", desc: "Colossal shrimp and lump crab in scampi butter" },
-      { name: "Lobster Tail Dinner", price: "96", desc: "8–10 oz Maine Lobster with drawn butter" },
+      { name: "Pan Fried Perch", price: "58", desc: "Five pieces of classically prepared perch fillets pan fried to perfection" },
+      { name: "Sea Scallops", price: "68", desc: "Five Sea Scallops pan seared to perfection and basted with white wine, fresh thyme, and garlic butter. Served with Fettuccine and toast points (no starch selection)" },
+      { name: "Chilean Sea Bass", price: "74", desc: "Classic pan seared with fresh herbs and butter" },
+      { name: "Crab Cakes", price: "66", desc: "Two gorgeous Lump Crab Cakes made to order and topped with quail eggs" },
+      { name: "Great Northern Walleye", price: "52", desc: "Choose from Classically Seasoned or Pecan Parmesan Encrusted, pan seared to a golden brown" },
+      { name: "Atlantic Wild Salmon", price: "58", desc: "Pan seared to a perfect medium and glazed in our herb butter" },
+      { name: "Classic Shrimp Scampi", price: "58", desc: "Fine colossal shrimp topped with fresh lump crab in a traditional scampi butter. Served with fettuccine (no starch selection) and toast points" },
+      { name: "Fried or Grilled Shrimp", price: "56", desc: "Colossal shrimp hand-breaded, seasoned and fried until golden. Or choose five colossal shrimp seasoned and grilled to perfection" },
+      { name: "Lobster Tail Dinner", price: "96", desc: "8–10 oz of beautifully prepared Maine Lobster with drawn butter" },
+      { name: "Colossal Shrimp and Sea Scallops with Cheesy Grits", price: "60", desc: "Drizzled with house-made hot sauce (no starch selection)" },
     ],
   },
   {
     category: "Perfect Pasta",
+    note: "Served with house salad and warm bread with herbed butter",
     images: ["/post-pics/seafood-pasta-1.jpg"],
     items: [
-      { name: "Seafood Pasta", price: "78", desc: "Lobster, shrimp, scallops & clams in garlic parmesan cream" },
-      { name: "Basil Chicken Pasta", price: "64", desc: "Pan-seared chicken, artichokes, tomatoes, and basil" },
-      { name: "Lobster & Shrimp Ravioli", price: "84", desc: "House-made ravioli in white wine cream sauce" },
+      { name: "Seafood Pasta", price: "78", desc: "Fettuccine with white wine and garlic parmesan cream sauce, mixed with Lobster, Shrimp, Sea Scallops and hardshell petite Clams" },
+      { name: "Basil Chicken Pasta", price: "64", desc: "Pan seared Chicken Breast served on our Fettuccine with white wine and garlic parmesan cream sauce with artichokes, tomatoes and fresh basil" },
+      { name: "Chicken, Shrimp and Bacon Garlic Parmesan Pasta", price: "72", desc: "Our famous fettuccine mixed with our house-made white wine parmesan garlic sauce topped with crispy bacon and green onions" },
+      { name: "Vegetable Pasta Primavera", price: "54", desc: "Beautiful assorted veggies mixed with our famous fettuccine and primavera sauce" },
+      { name: "Lobster and Shrimp Ravioli", price: "84", desc: "House-made ravioli in a white wine and garlic cream sauce" },
     ],
   },
   {
@@ -119,10 +144,30 @@ const dinnerMenu: MenuCategory[] = [
       { name: "Vanilla Bean Crème Brûlée", price: "16" },
       { name: "Spiced Carrot Cake with Cream Cheese Frosting", price: "16" },
       { name: "Pecan Cobbler with Vanilla Bean Ice Cream and Caramel Drizzle", price: "16" },
-      { name: "Death by Chocolate Molten Cake", price: "16", desc: "Served warm with Vanilla Bean Ice Cream, Caramel and Chocolate Swirl" },
+      { name: "Death by Chocolate Molten Cake", price: "16", desc: "Served warm with Vanilla Bean Ice Cream, Caramel and Chocolate Swirls" },
       { name: "Toffee and Caramel with Sea Salt Crêpe Cake", price: "16" },
       { name: "Ooey Gooey Brown Butter Cake with Vanilla Bean Ice Cream and Berries", price: "16" },
       { name: "Vanilla Bean Ice Cream", price: "8" },
+    ],
+  },
+  {
+    category: "Kids Menu (10 and under)",
+    images: [],
+    items: [
+      { name: "Grilled Cheese and Fries", price: "10" },
+      { name: "Chicken Fingers and Fries", price: "12" },
+      { name: "Mini Mac and Cheese", price: "12" },
+      { name: "Pasta in cream sauce or buttered pasta", price: "12" },
+    ],
+  },
+  {
+    category: "Beverages",
+    images: [],
+    items: [
+      { name: "Coke, Diet Coke, Coke Zero, Sprite, Dr Pepper", price: "4" },
+      { name: "Ice or Hot Tea, Whole Milk, Shirley Temple", price: "4" },
+      { name: "Hot Chocolate with Whipped Cream", price: "4" },
+      { name: "Fresh Ground Coffee (regular or decaf)", price: "4" },
     ],
   },
 ];
@@ -277,11 +322,55 @@ function MenuRow({ item }: { item: MenuItem }) {
 
 // ─── DINNER CATEGORY BLOCK (With alternating images) ──────────────────────────
 function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight: boolean }) {
+  const hasImages = cat.images && cat.images.length > 0;
+
+  if (!hasImages) {
+    // Text-only block for categories without images (Kids Menu, Beverages, etc.)
+    return (
+      <div className="border-b border-[rgba(197,160,89,0.1)] max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 py-16 md:py-20">
+        <div className="mb-8">
+          <motion.h3
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-30px" }}
+            transition={{ duration: 0.8 }}
+            className="font-serif font-bold text-4xl md:text-5xl"
+            style={{
+              background: "linear-gradient(135deg, #E6C875 0%, #C5A059 45%, #8A6A30 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text"
+            }}
+          >
+            {cat.category}
+          </motion.h3>
+          <motion.div
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="h-px w-20 bg-gradient-to-r from-[#C5A059] to-transparent mt-3 origin-left"
+          />
+        </div>
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-40px" }}
+        >
+          {cat.items.map((item) => (
+            <MenuRow key={item.name} item={item} />
+          ))}
+        </motion.div>
+      </div>
+    );
+  }
+
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px] border-b border-[rgba(197,160,89,0.1)]">
       {/* Image Column */}
       <div className={`relative ${imageRight ? "md:order-2" : "md:order-1"}`}>
-        {cat.images && <RotatingImage images={cat.images} alt={cat.category} />}
+        <RotatingImage images={cat.images} alt={cat.category} />
       </div>
       
       {/* Text Column */}
@@ -345,7 +434,7 @@ export default function MenuPage() {
     <main className="bg-[#0a0a0a] min-h-screen pt-[72px]">
       
       {/* Hero Header */}
-      <div className="relative h-[35vh] md:h-[45vh] w-full flex flex-col items-center justify-center overflow-hidden">
+      <div className="relative h-[70vh] md:h-[85vh] w-full flex flex-col items-center justify-center overflow-hidden">
         <Image
           src="/post-pics/big-steak-and-shrimp.jpg"
           alt="The Fat Chef signature steak dish" fill className="object-cover opacity-20" priority
