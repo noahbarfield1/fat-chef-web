@@ -2,6 +2,7 @@
 
 import { useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google';
 
 // --------------------------------------------------------------------------
 // Config
@@ -224,9 +225,18 @@ export default function LuxReservationForm() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (Number(partySize) >= 9) {
+      sendGAEvent('event', 'large_party_call_initiated', { party_size: partySize });
       window.location.href = "tel:4792025106";
       return;
     }
+    
+    // Track standard reservations
+    sendGAEvent('event', 'reservation_initiated', { 
+      party_size: partySize,
+      booking_date: date,
+      booking_time: time
+    });
+
     const dt = toDateTimeParam(date, time);
     const url = `https://www.opentable.com/r/${OT_SLUG}?restref=${OT_RID}&lang=en-US&ot_source=Restaurant%20website&covers=${partySize}&dateTime=${dt}`;
     window.open(url, "_blank", "noopener,noreferrer");
