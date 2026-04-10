@@ -8,6 +8,7 @@ import LocationSection from "./components/LocationSection";
 import Accolades from "./components/Accolades";
 import Testimonials from "./components/Testimonials";
 import { motion, Variants } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google';
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 36 },
@@ -172,7 +173,7 @@ export default function HomePage() {
             <Link href="/reservations" className="font-sans text-[11px] font-bold tracking-[0.2em] uppercase px-10 py-4 bg-[#C5A059] text-[#070707] hover:bg-[#E6C875] transition-colors duration-300 text-center">
               Reserve a Table
             </Link>
-            <a href="tel:4792025106" className="font-sans text-[11px] font-semibold tracking-[0.2em] uppercase px-10 py-4 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[rgba(197,160,89,0.08)] transition-all duration-300 text-center">
+            <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'home_cta' })} className="font-sans text-[11px] font-semibold tracking-[0.2em] uppercase px-10 py-4 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[rgba(197,160,89,0.08)] transition-all duration-300 text-center">
               Call 479.202.5106
             </a>
           </div>

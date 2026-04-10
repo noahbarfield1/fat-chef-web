@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { sendGAEvent } from '@next/third-parties/google';
 
 const links = [
   { href: "/", label: "Home" },
@@ -71,6 +72,7 @@ export default function Nav() {
             ))}
             <a
               href="tel:4792025106"
+              onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'desktop_nav' })}
               className="font-sans text-[11px] font-semibold tracking-[0.14em] uppercase px-5 py-2.5 border border-[rgba(197,160,89,0.4)] text-[#C5A059] hover:bg-[#C5A059] hover:text-[#070707] transition-all duration-300"
             >
               479.202.5106
@@ -112,6 +114,7 @@ export default function Nav() {
             ))}
             <a
               href="tel:4792025106"
+              onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'mobile_nav' })}
               className="mt-4 font-sans text-sm tracking-widest uppercase text-[#C5A059] border border-[rgba(197,160,89,0.4)] px-8 py-3"
             >
               479.202.5106

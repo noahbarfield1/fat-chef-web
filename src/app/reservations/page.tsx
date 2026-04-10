@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import LuxReservationForm from "../components/LuxReservationForm";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function ReservationsPage() {
   return (
@@ -39,7 +40,7 @@ export default function ReservationsPage() {
           >
             <div>
               <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-[#6A5E4E] mb-3">Prefer to call?</p>
-              <a href="tel:4792025106" className="font-serif text-4xl font-bold text-[#C5A059] hover:text-[#E6C875] transition-colors block mb-1">
+              <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'reservations_page' })} className="font-serif text-4xl font-bold text-[#C5A059] hover:text-[#E6C875] transition-colors block mb-1">
                 479.202.5106
               </a>
               <p className="font-sans text-[13px] text-[#5A4E40]">We&apos;d love to hear from you directly.</p>
@@ -47,7 +48,7 @@ export default function ReservationsPage() {
 
             <div>
               <p className="font-sans text-[10px] tracking-[0.2em] uppercase text-[#6A5E4E] mb-2">Email</p>
-              <a href="mailto:TheFatChefNWA@gmail.com" className="font-sans text-base text-[#C5A059] hover:text-[#E6C875] transition-colors">
+              <a href="mailto:TheFatChefNWA@gmail.com" onClick={() => sendGAEvent('event', 'email_initiated', { source: 'reservations_page' })} className="font-sans text-base text-[#C5A059] hover:text-[#E6C875] transition-colors">
                 TheFatChefNWA@gmail.com
               </a>
             </div>

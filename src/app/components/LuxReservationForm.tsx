@@ -360,7 +360,7 @@ export default function LuxReservationForm() {
         <p className="font-sans text-[11px] text-[#6A5E4E] leading-relaxed">
           We are open Wednesday–Saturday, 5:00–9:00 PM.<br/>
           For parties of 9 or more, please{" "}
-          <a href="tel:4792025106" className="text-[#5A4E3E] underline underline-offset-2 hover:text-[#C5A059] transition-colors">
+          <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'reservation_form_note' })} className="text-[#5A4E3E] underline underline-offset-2 hover:text-[#C5A059] transition-colors">
             call us directly
           </a>.
         </p>

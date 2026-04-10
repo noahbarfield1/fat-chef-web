@@ -1,5 +1,7 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function Footer() {
   return (
@@ -30,8 +32,8 @@ export default function Footer() {
         </div>
         <div>
           <h3 className="font-sans text-[10px] tracking-[0.22em] uppercase text-[#C5A059] mb-4">Contact</h3>
-          <a href="tel:4792025106" className="block font-sans text-[13px] text-[#5A4E40] hover:text-[#C5A059] transition-colors mb-1">479.202.5106</a>
-          <a href="mailto:TheFatChefNWA@gmail.com" className="block font-sans text-[12px] text-[#5A4E40] hover:text-[#C5A059] transition-colors break-all mb-3">TheFatChefNWA@gmail.com</a>
+          <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'footer' })} className="block font-sans text-[13px] text-[#5A4E40] hover:text-[#C5A059] transition-colors mb-1">479.202.5106</a>
+          <a href="mailto:TheFatChefNWA@gmail.com" onClick={() => sendGAEvent('event', 'email_initiated', { source: 'footer' })} className="block font-sans text-[12px] text-[#5A4E40] hover:text-[#C5A059] transition-colors break-all mb-3">TheFatChefNWA@gmail.com</a>
           <address className="not-italic font-sans text-[12px] text-[#5A4E40] leading-relaxed mb-3">14550 E HWY 12<br/>Rogers, AR 72756</address>
           <p className="font-sans text-[11px] text-[#C5A059] italic mb-4 leading-relaxed">&ldquo;Just 3 miles from downtown Rogers on highway 12 towards Beaver lake.&rdquo;</p>
         </div>
