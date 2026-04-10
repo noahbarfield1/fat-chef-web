@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import SmoothScroller from "./components/primitives/SmoothScroller";
+import Script from "next/script";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -80,6 +81,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Footer />
         </SmoothScroller>
+        <Script 
+          src="//tag.brandcdn.com/autoscript/thefatchef_vgxsvmvrmtzswgm9/The_Fat_Chef.js" 
+          strategy="afterInteractive" 
+        />
       </body>
     </html>
   );
