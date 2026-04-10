@@ -70,6 +70,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <head>
+        {/* Resource hints — start DNS/TLS early for external CDNs */}
+        <link rel="preconnect" href="https://storage.googleapis.com" />
+        <link rel="dns-prefetch" href="https://storage.googleapis.com" />
+        <link rel="preconnect" href="https://static.wixstatic.com" />
+        <link rel="dns-prefetch" href="https://static.wixstatic.com" />
+        <meta httpEquiv="x-dns-prefetch-control" content="on" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

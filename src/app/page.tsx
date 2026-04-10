@@ -4,11 +4,13 @@
 import LuxImage from "./components/primitives/LuxImage";
 import Link from "next/link";
 import HomeHero from "./components/HomeHero";
-import LocationSection from "./components/LocationSection";
-import Accolades from "./components/Accolades";
-import Testimonials from "./components/Testimonials";
+import dynamic from "next/dynamic";
 import { motion, Variants } from "framer-motion";
 import { sendGAEvent } from '@next/third-parties/google';
+
+const Accolades = dynamic(() => import("./components/Accolades"));
+const Testimonials = dynamic(() => import("./components/Testimonials"));
+const LocationSection = dynamic(() => import("./components/LocationSection"));
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 36 },
