@@ -13,7 +13,7 @@ export default function Footer() {
             alt="The Fat Chef" width={130} height={40}
             className="object-contain h-8 w-auto mb-5"
           />
-          <p className="font-sans text-[13px] text-[#5A4E40] leading-relaxed">
+          <p className="font-sans text-[13px] text-[#8A7E6E] leading-relaxed">
             Family-owned fine dining in a log cabin setting. Rogers, Arkansas.
           </p>
         </div>
@@ -21,20 +21,20 @@ export default function Footer() {
           <h3 className="font-sans text-[10px] tracking-[0.22em] uppercase text-[#C5A059] mb-4">Navigate</h3>
           <ul className="flex flex-col gap-2.5">
             {[["/","Home"],["/menu","Menu"],["/about","Our Story"],["/reservations","Reserve"]].map(([href,label]) => (
-              <li key={href}><Link href={href} className="font-sans text-[13px] text-[#5A4E40] hover:text-[#C5A059] transition-colors">{label}</Link></li>
+              <li key={href}><Link href={href} className="font-sans text-[13px] text-[#8A7E6E] hover:text-[#C5A059] transition-colors">{label}</Link></li>
             ))}
           </ul>
         </div>
         <div>
           <h3 className="font-sans text-[10px] tracking-[0.22em] uppercase text-[#C5A059] mb-4">Hours</h3>
-          <p className="font-sans text-[13px] text-[#5A4E40]">Wednesday – Saturday</p>
+          <p className="font-sans text-[13px] text-[#8A7E6E]">Wednesday – Saturday</p>
           <p className="font-sans text-[13px] text-[#C5A059] font-semibold">5:00 PM – 9:00 PM</p>
         </div>
         <div>
           <h3 className="font-sans text-[10px] tracking-[0.22em] uppercase text-[#C5A059] mb-4">Contact</h3>
-          <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'footer' })} className="block font-sans text-[13px] text-[#5A4E40] hover:text-[#C5A059] transition-colors mb-1">479.202.5106</a>
-          <a href="mailto:TheFatChefNWA@gmail.com" onClick={() => sendGAEvent('event', 'email_initiated', { source: 'footer' })} className="block font-sans text-[12px] text-[#5A4E40] hover:text-[#C5A059] transition-colors break-all mb-3">TheFatChefNWA@gmail.com</a>
-          <address className="not-italic font-sans text-[12px] text-[#5A4E40] leading-relaxed mb-3">14550 E HWY 12<br/>Rogers, AR 72756</address>
+          <a href="tel:4792025106" onClick={() => sendGAEvent('event', 'phone_call_initiated', { source: 'footer' })} className="block font-sans text-[13px] text-[#8A7E6E] hover:text-[#C5A059] transition-colors mb-1">479.202.5106</a>
+          <a href="mailto:TheFatChefNWA@gmail.com" onClick={() => sendGAEvent('event', 'email_initiated', { source: 'footer' })} className="block font-sans text-[12px] text-[#8A7E6E] hover:text-[#C5A059] transition-colors break-all mb-3">TheFatChefNWA@gmail.com</a>
+          <address className="not-italic font-sans text-[12px] text-[#8A7E6E] leading-relaxed mb-3">14550 E HWY 12<br/>Rogers, AR 72756</address>
           <p className="font-sans text-[11px] text-[#C5A059] italic mb-4 leading-relaxed">&ldquo;Just 3 miles from downtown Rogers on highway 12 towards Beaver lake.&rdquo;</p>
         </div>
       </div>
