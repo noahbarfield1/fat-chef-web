@@ -340,8 +340,8 @@ function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight
   if (!hasImages) {
     // Text-only block for categories without images (Kids Menu, Beverages, etc.)
     return (
-      <div className="border-b border-[rgba(197,160,89,0.1)] max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 py-16 md:py-20">
-        <div className="mb-8">
+      <div className="border-b border-[rgba(197,160,89,0.1)] max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 py-10 md:py-14">
+        <div className="mb-8 flex flex-col items-center text-center">
           <motion.h3
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -362,14 +362,18 @@ function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="h-px w-20 bg-gradient-to-r from-[#C5A059] to-transparent mt-3 origin-left"
+            className="h-px w-20 bg-gradient-to-r from-[#C5A059] to-transparent mt-3"
           />
+          {cat.note && (
+            <p className="font-sans text-[13px] text-[#A6998A] italic mt-4 max-w-xl leading-relaxed">{cat.note}</p>
+          )}
         </div>
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-40px" }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-2 md:gap-y-0"
         >
           {cat.items.map((item) => (
             <MenuRow key={item.name} item={item} />
