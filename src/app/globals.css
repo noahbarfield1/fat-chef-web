@@ -106,16 +106,8 @@
 .mood-strip::-webkit-scrollbar { display: none; }
 .mood-strip { -ms-overflow-style: none; scrollbar-width: none; }
 
-/* Kill the mobile browser focus-ring glow on the Lenis scroll wrapper */
-[data-lenis-prevent],
-[data-lenis-prevent-wheel],
-[data-lenis-prevent-touch],
-html.lenis,
-html.lenis body {
-  outline: none !important;
-}
-/* Belt-and-suspenders: nuke outline on the html/body scroll root on mobile */
-html:focus, body:focus { outline: none !important; }
+
+
 
 /* ── Mobile UX Sweep ── */
 @media (max-width: 640px) {
