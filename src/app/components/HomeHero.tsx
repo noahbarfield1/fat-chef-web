@@ -45,9 +45,9 @@ export default function HomeHero() {
 
   // Only run parallax on desktop — scroll transforms cause major jank on mobile
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const bgYDesktop  = useTransform(scrollYProgress, [0, 1], ["0%", "28%"]);
+  const bgYDesktop  = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
   const fadeDesktop = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const moveYDesktop = useTransform(scrollYProgress, [0, 0.5], ["0%", "10%"]);
+  const moveYDesktop = useTransform(scrollYProgress, [0, 0.5], ["0%", "5%"]);
 
   // Static values for mobile (no parallax)
   const bgY   = isMobile ? "0%" : bgYDesktop;

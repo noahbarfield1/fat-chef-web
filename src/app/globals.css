@@ -24,6 +24,11 @@
     contain: layout style;
     transform: translateZ(0);
   }
+  /* Force Framer Motion elements to GPU layer */
+  [style*="transform"], [style*="opacity"] {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+  }
 }
 
 ::selection { background: #C5A059; color: #070707; }
@@ -129,5 +134,15 @@ html:focus, body:focus { outline: none !important; }
   .menu-row, [style*="paddingBlock"] {
     overflow-wrap: break-word;
     word-break: break-word;
+  }
+}
+
+/* ── Reduced Motion: respect user preference ── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
