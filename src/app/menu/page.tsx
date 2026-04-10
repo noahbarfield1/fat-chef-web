@@ -42,14 +42,27 @@ const dinnerMenu: MenuCategory[] = [
   },
   {
     category: "Salads & Soups",
+    note: "House-Made Salad Dressings: Ranch, Blue Cheese, Thousand Island, Balsamic Herb Vinaigrette, Horseradish Blue Cheese",
     images: ["/post-pics/salads-1.jpg", "/post-pics/tomato-soup.jpg"],
     items: [
       { name: "House Salad", price: "12", desc: "Special blend of iceberg and romaine lettuce, crudité, blended cheese, and house-made croutons" },
-      { name: "Wedge Salad", price: "15", desc: "Classic Iceberg Wedge with homemade Blue Cheese Dressing, blue cheese crumbles, bacon, tomatoes and scallions" },
-      { name: "Caesar", price: "12", desc: "Crisp Romaine lettuce with homemade Caesar dressing, parmesan, Pecorino Romano cheese, and homemade croutons" },
-      { name: "Caprese", price: "18", desc: "Deliciously perfect tomatoes paired with Fresh Mozzarella, basil micro-greens and balsamic glaze" },
+      { name: "Wedge Salad", price: "15", desc: "Classic Iceberg Wedge topped with our homemade Blue Cheese Dressing, blue cheese crumbles, bacon, tomatoes and scallions" },
+      { name: "Caesar", price: "12", desc: "Crisp Romaine lettuce topped with our homemade Caesar dressing, parmesan and Pecorino Romano cheese, and homemade croutons" },
+      { name: "Caprese", price: "18", desc: "Deliciously perfect tomatoes paired with Fresh Mozzarella, basil micro-greens and our balsamic glaze" },
       { name: "Dinner Salad", price: "36", desc: "Romaine and spinach dinner size salad with salmon and shrimp topped with warm bacon vinaigrette" },
       { name: "Soup Du Jour", price: "10 / 15", desc: "Cup or Bowl — ask your server" },
+    ],
+  },
+  {
+    category: "Starches",
+    images: [],
+    note: "Included with all entrees",
+    items: [
+      { name: "Sweet Potato", price: "7" },
+      { name: "Rice Pilaf", price: "7" },
+      { name: "French Fries", price: "7" },
+      { name: "Hash Browns", price: "7" },
+      { name: "Baked Potato", price: "7", desc: "With butter and sour cream. Add bacon, cheese, scallions +$5" },
     ],
   },
   {
@@ -64,7 +77,7 @@ const dinnerMenu: MenuCategory[] = [
     items: [
       { name: "Porterhouse USDA Prime (Charbroiled) 24–26 oz", price: "98", desc: "Cut to Order" },
       { name: "T-Bone USDA Prime (Charbroiled) 24–26 oz", price: "88", desc: "Cut to Order" },
-      { name: "Filet USDA Prime (Pan Seared) 6 oz / 8 oz", price: "60 / 72", desc: "Bacon wrapped" },
+      { name: "Fillet USDA Prime (Pan Seared) 6 oz / 8 oz", price: "60 / 72", desc: "Bacon wrapped" },
       { name: "Ribeye USDA Prime (Charbroiled) 14–16 oz", price: "74" },
       { name: "New York Strip USDA Prime (Pan Seared) 14–16 oz", price: "70" },
       { name: "Surf & Turf USDA Prime", price: "128 / 140", desc: "6 oz or 8 oz Prime Tenderloin fillet with an 8–10 oz Maine Lobster tail" },
@@ -370,7 +383,7 @@ function ImageCategoryBlock({ cat, imageRight }: { cat: MenuCategory; imageRight
     <div className="grid grid-cols-1 md:grid-cols-2 min-h-[500px] border-b border-[rgba(197,160,89,0.1)]">
       {/* Image Column */}
       <div className={`relative ${imageRight ? "md:order-2" : "md:order-1"}`}>
-        <RotatingImage images={cat.images} alt={cat.category} />
+        <RotatingImage images={cat.images!} alt={cat.category} />
       </div>
       
       {/* Text Column */}
