@@ -144,6 +144,24 @@ export default function HomePage() {
               </motion.div>
             ))}
           </motion.div>
+
+          {/* Value Prop Callout */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8, delay: 0.15 }}
+            className="relative mt-10 mb-10 py-8 px-6 md:px-10 rounded-sm text-center"
+            style={{ background: "rgba(197,160,89,0.03)", border: "1px solid rgba(197,160,89,0.15)" }}
+          >
+            <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.5) 50%, transparent 100%)" }} />
+            <p className="font-sans text-[10px] tracking-[0.28em] uppercase text-[#C5A059] mb-2">The Fat Chef Difference</p>
+            <p className="font-serif text-xl md:text-2xl font-bold text-[#F0EBE1] mb-3">Every Entrée Is a Complete Experience</p>
+            <p className="font-sans text-[13px] text-[#8A7E6E] leading-relaxed max-w-2xl mx-auto">
+              Every entrée includes the <span className="text-[#C5A059] font-medium">veggie of the day</span>, your <span className="text-[#C5A059] font-medium">choice of starch</span>, a <span className="text-[#C5A059] font-medium">house salad with house-made dressings</span>, and <span className="text-[#C5A059] font-medium">fresh made bread with house herbed butter</span>. No à la carte surprises.
+            </p>
+          </motion.div>
+
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}

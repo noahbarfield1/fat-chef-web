@@ -30,7 +30,7 @@ const dinnerMenu: MenuCategory[] = [
     ],
     items: [
       { name: "Duck Bacon Empanadas", price: "48", desc: "Three house-made empanadas with duck bacon, wilted spinach, topped with seared scallops" },
-      { name: "Escargot", price: "34 / 36", desc: "Six succulent Helix escargot in sweet cream garlic butter sauce. Au Gratin available" },
+      { name: "Escargot", price: "34", desc: "Six succulent Helix escargot in sweet cream garlic butter sauce. Make it Au Gratin for +$2" },
       { name: "Shrimp Cocktail", price: "36", desc: "Colossal shrimp with house-made spicy cocktail sauce, served chilled on ice" },
       { name: "Handmade Onion Rings", price: "22", desc: "Hand dipped in our exclusive Belgium White Beer Batter. Served with house-made ranch" },
       { name: "Crab Rangoon Dip", price: "36", desc: "Fresh crab meat with bechamel cream and scallions, served bubbling hot with fried wonton chips" },
@@ -476,6 +476,71 @@ export default function MenuPage() {
           </div>
         </div>
       </div>
+
+      {/* ─── EVERY ENTRÉE INCLUDES — VALUE PROP BANNER ──────────────────────── */}
+      <section className="relative w-full py-14 md:py-20 overflow-hidden" style={{ background: "linear-gradient(180deg, #0a0a0a 0%, #0d0b08 50%, #0a0a0a 100%)" }}>
+        {/* Decorative top/bottom borders */}
+        <div className="absolute inset-x-0 top-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.4) 30%, rgba(197,160,89,0.6) 50%, rgba(197,160,89,0.4) 70%, transparent 100%)" }} />
+        <div className="absolute inset-x-0 bottom-0 h-px" style={{ background: "linear-gradient(90deg, transparent 0%, rgba(197,160,89,0.4) 30%, rgba(197,160,89,0.6) 50%, rgba(197,160,89,0.4) 70%, transparent 100%)" }} />
+
+        {/* Subtle background glow */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: "radial-gradient(ellipse 60% 40% at 50% 50%, rgba(197,160,89,0.04) 0%, transparent 70%)" }} />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <p className="font-sans text-[10px] tracking-[0.35em] uppercase text-[#C5A059] mb-4">The Fat Chef Difference</p>
+            <h2 className="font-serif text-3xl md:text-5xl font-bold text-[#F0EBE1] mb-5 leading-tight tracking-wide">
+              A Complete Culinary Experience
+            </h2>
+            <div className="w-16 h-px mx-auto mb-8 bg-gradient-to-r from-transparent via-[#C5A059] to-transparent opacity-60" />
+            <p className="font-sans text-[14px] md:text-[15px] text-[#A6998A] mb-12 max-w-2xl mx-auto leading-relaxed">
+              Unlike traditional steakhouses, your entrée is only the beginning. Each of our prime steaks and land offerings is accompanied by our signature selections.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-40px" }}
+            transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-[rgba(197,160,89,0.2)]"
+          >
+            {[
+              { title: "Vegetable Du Jour", desc: "Chef's daily preparation" },
+              { title: "Choice of Starch", desc: "Served your way" },
+              { title: "House Salad", desc: "With house-made dressings" },
+              { title: "Fresh Baked Bread", desc: "With rich herbed butter" },
+            ].map((item, i) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.1 }}
+                className="w-full md:w-1/4 py-4 md:py-0 md:px-8 flex flex-col items-center justify-center group"
+              >
+                <h4 className="font-serif text-[17px] md:text-[19px] font-semibold text-[#E6C875] mb-2 group-hover:text-[#F0EBE1] transition-colors duration-300">{item.title}</h4>
+                <p className="font-sans text-[12px] md:text-[13px] text-[#8A7E6E] uppercase tracking-wider">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="font-serif text-[14px] text-[#C5A059] mt-12 italic tracking-wide"
+          >
+            No hidden charges. No à la carte surprises.
+          </motion.p>
+        </div>
+      </section>
 
       {/* Sticky Tab Nav */}
       <div className="sticky top-[72px] z-30 bg-[#0a0a0a]/95 backdrop-blur-md border-b border-[rgba(197,160,89,0.15)] w-full flex justify-center py-4 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
