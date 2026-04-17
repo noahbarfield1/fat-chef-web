@@ -82,6 +82,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="antialiased bg-[#070707] text-[#F0EBE1]" suppressHydrationWarning>
+        <div className="bg-red-800 text-white text-center py-3 px-4 text-sm md:text-base font-medium tracking-wide z-[100] relative border-b border-red-900/50 flex flex-col md:flex-row items-center justify-center gap-2">
+          <span>🚨 <strong>YES, WE ARE OPEN!</strong></span>
+          <span>Despite what Google incorrectly states, we are <strong>NOT</strong> permanently closed. We look forward to serving you!</span>
+        </div>
           <Nav />
           {children}
           <Footer />
