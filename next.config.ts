@@ -1,6 +1,32 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: '/copy-of-menu',
+        destination: '/menu',
+        permanent: true,
+      },
+      {
+        source: '/blog',
+        destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/menu',
+        has: [
+          {
+            type: 'query',
+            key: 'menu',
+            value: 'dinner-menu',
+          },
+        ],
+        destination: '/menu',
+        permanent: true,
+      }
+    ];
+  },
   images: {
     // Serve WebP/AVIF — smaller file sizes with same visual quality
     formats: ["image/avif", "image/webp"],
